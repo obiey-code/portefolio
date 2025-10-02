@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             // Empêche l'envoi standard du formulaire
-            e.preventDefault(); 
+           //code .. e.preventDefault(); 
             
             // NOTE : C'est ici que vous intégrerez l'API ou le service d'envoi (Formspree, Netlify Forms, etc.)
             
