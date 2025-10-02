@@ -16,69 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
- // ==========================================
-    // 2. Gestion du Formulaire de Contact (Formspree avec Fetch API)
-    // Permet l'envoi des données sans recharger la page et affiche un statut.
-    // ==========================================
-    const contactForm = document.getElementById('contactForm'); // Assurez-vous d'avoir l'ID 'contactForm' dans votre HTML
-    const statusMessage = document.getElementById('formStatusMessage'); // Assurez-vous d'avoir l'ID 'formStatusMessage' dans votre HTML
-    const submitButton = document.getElementById('submitButton'); // Assurez-vous d'avoir l'ID 'submitButton' dans votre HTML
-
-    if (contactForm && statusMessage && submitButton) {
-        // Récupération de l'URL Formspree depuis l'attribut 'action'
-        const formUrl = contactForm.action;
-        
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); 
-            
-            // --- Préparation et affichage du statut "En cours d'envoi" ---
-            statusMessage.style.display = 'block';
-            statusMessage.textContent = 'Envoi en cours... 📨';
-            statusMessage.style.color = '#007bff'; // Bleu
-            submitButton.disabled = true; // Désactive le bouton pendant l'envoi
-            submitButton.textContent = 'Envoi...';
-
-            const formData = new FormData(contactForm);
-            
-            try {
-                // Envoi des données via Fetch API
-                const response = await fetch(formUrl, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json' // Requis par Formspree pour une réponse JSON
-                    }
-                });
-
-                if (response.ok) {
-                    // Succès de l'envoi
-                    statusMessage.textContent = 'Message envoyé avec succès ! Je vous recontacterai rapidement. ✅';
-                    statusMessage.style.color = '#28a745'; // Vert
-                    contactForm.reset(); // Vide les champs du formulaire
-                } else {
-                    // Échec de l'envoi (ex: validation Formspree, erreur serveur)
-                    const data = await response.json();
-                    let errorMessage = data.error || 'Erreur lors de l\'envoi du message. ❌';
-                    statusMessage.textContent = 'Erreur : ' + errorMessage;
-                    statusMessage.style.color = '#dc3545'; // Rouge
-                }
-            } catch (error) {
-                // Erreur de connexion/réseau (ex: l'utilisateur est hors ligne)
-                statusMessage.textContent = 'Erreur réseau. Veuillez vérifier votre connexion ou m\'envoyer un email directement. ❌';
-                statusMessage.style.color = '#dc3545';
-                console.error('Erreur Formspree/Fetch:', error);
-            } finally {
-                // --- Rétablit l'état du formulaire ---
-                submitButton.disabled = false;
-                submitButton.textContent = 'Envoyer';
-                // Masque le message de statut après 5 secondes
-                setTimeout(() => {
-                    statusMessage.style.display = 'none';
-                    statusMessage.textContent = '';
-                }, 5000); 
-            }
-        });
-    }
+    // Gestionnaire de Formulaire de Contact (Exemple simple)
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            // Empêche l'envoi standard du formulaire
+            e.preventDefault(); 
+            
+            // NOTE : C'est ici que vous intégrerez l'API ou le service d'envoi (Formspree, Netlify Forms, etc.)
+            
+            alert("Merci OBIEY Christ Dany pour votre message ! Je vous recontacterai rapidement à l'adresse fournie.");
+            contactForm.reset();
+        });
+    }
 
     // Exemple d'animation : Ajout d'une classe pour l'apparition du Hero
     const heroContent = document.querySelector('.hero-content');
@@ -94,6 +44,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300); 
     }
 });
-
-
-
