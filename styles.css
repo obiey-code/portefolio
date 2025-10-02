@@ -1,4 +1,9 @@
-/* Réinitialisation de base */
+/* Fichier: styles.css */
+
+/* ---------------------------------- */
+/* 0. Réinitialisation et Variables */
+/* ---------------------------------- */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,9 +11,12 @@
 }
 
 :root {
-    --primary-color: #007bff; /* Bleu d'accentuation */
-    --secondary-color: #f4f4f9; /* Arrière-plan clair */
-    --text-color: #333;
+    /* Palette de Couleurs Pro */
+    --primary-color: #007bff;     /* Bleu Vif pour l'Accentuation (Professionnel) */
+    --primary-dark: #0056b3;      /* Bleu foncé pour le survol */
+    --secondary-color: #f8f9fa;   /* Arrière-plan très clair (Blanc cassé) */
+    --text-color: #343a40;        /* Gris foncé pour le texte principal */
+    --light-text-color: #6c757d;  /* Gris moyen pour les descriptions/dates */
     --header-height: 60px;
 }
 
@@ -17,9 +25,14 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--secondary-color);
+    /* Assure que la page utilise tout l'écran verticalement */
+    min-height: 100vh; 
 }
 
-/* Styles de la Navigation */
+/* ---------------------------------- */
+/* 1. Navigation (Header) */
+/* ---------------------------------- */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -27,7 +40,7 @@ body {
     padding: 1rem 5%;
     height: var(--header-height);
     background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Ombre légère pour la profondeur */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -35,7 +48,7 @@ body {
 
 .navbar .logo {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.4rem; /* Légèrement plus grand */
     color: var(--primary-color);
 }
 
@@ -47,7 +60,7 @@ body {
 .navbar ul li a {
     text-decoration: none;
     color: var(--text-color);
-    margin-left: 1.5rem;
+    margin-left: 1.75rem;
     font-weight: 500;
     transition: color 0.3s;
 }
@@ -56,15 +69,20 @@ body {
     color: var(--primary-color);
 }
 
-/* Styles généraux des Boutons et Sections */
+/* ---------------------------------- */
+/* 2. Boutons (CTA) */
+/* ---------------------------------- */
+
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.8rem;
     border-radius: 50px; /* Bord arrondi pour un look moderne */
     text-decoration: none;
     font-weight: 700;
-    margin-right: 1rem;
+    margin-right: 1.2rem;
     transition: background-color 0.3s, color 0.3s, transform 0.2s;
     display: inline-block;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
 }
 
 .primary-btn {
@@ -74,8 +92,10 @@ body {
 }
 
 .primary-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 .secondary-btn {
@@ -90,8 +110,12 @@ body {
     transform: translateY(-2px);
 }
 
+/* ---------------------------------- */
+/* 3. Styles Généraux des Sections */
+/* ---------------------------------- */
+
 section {
-    padding: 5rem 5%;
+    padding: 6rem 5%; /* Plus d'espace vertical pour la clarté */
     text-align: center;
 }
 
@@ -99,40 +123,71 @@ section h2 {
     font-size: 2.5rem;
     margin-bottom: 2.5rem;
     color: #1a1a1a;
+    position: relative;
+    /* Ligne décorative sous le titre */
+    display: inline-block;
 }
 
-/* 2. Section Hero */
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+
+/* ---------------------------------- */
+/* 4. Section Hero */
+/* ---------------------------------- */
+
 .hero-section {
-    min-height: calc(100vh - var(--header-height));
+    /* 100vh moins la hauteur du header pour qu'il remplisse l'écran */
+    min-height: calc(100vh - var(--header-height)); 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #e9ecef;
+    background-color: #e9ecef; /* Un gris très clair */
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 0.5rem;
 }
 
+.hero-content h1 strong {
+    color: var(--primary-color); /* Met en valeur votre nom */
+}
+
 .hero-content h2 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
+    font-size: 1.7rem;
+    color: var(--text-color);
     margin-bottom: 1.5rem;
 }
 
+.hero-content h2 strong {
+    color: #000;
+    font-weight: 900; /* Super gras pour la spécialité */
+}
+
 .hero-content p {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.15rem;
 }
 
 .hero-actions {
     margin-top: 1.5rem;
 }
 
-/* 3. Section Projets */
+
+/* ---------------------------------- */
+/* 5. Section Projets */
+/* ---------------------------------- */
+
 .projects-section {
     background-color: white;
 }
@@ -140,52 +195,70 @@ section h2 {
 .project-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    gap: 3rem; /* Plus d'espace entre les cartes */
     margin-top: 2rem;
 }
 
 .project-card {
-    background-color: #f8f9fa;
+    background-color: var(--secondary-color);
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Ombre plus visible */
     text-align: left;
-    transition: transform 0.3s;
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+    border-top: 5px solid var(--primary-color); /* Bordure colorée */
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .project-card img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 6px;
     margin-bottom: 1rem;
-    aspect-ratio: 16 / 9; /* Assure un ratio d'image cohérent */
+    aspect-ratio: 16 / 9;
     object-fit: cover;
 }
 
 .project-card h3 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-size: 1.35rem;
 }
 
 .project-card .technos {
-    font-size: 0.9rem;
-    color: #6c757d;
-    margin: 0.75rem 0;
+    font-size: 0.95rem;
+    color: var(--light-text-color);
+    margin: 0.75rem 0 1.5rem;
+}
+
+.project-card .technos span {
+    font-weight: 700;
+    color: var(--text-color);
+    margin-right: 5px;
 }
 
 .project-links a {
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-/* 4. Section Compétences */
+.project-links a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* ---------------------------------- */
+/* 6. Section Compétences */
+/* ---------------------------------- */
+
 .skills-section {
-    background-color: var(--secondary-color);
+    background-color: #f0f0f5;
 }
 
 .skills-list {
@@ -196,21 +269,36 @@ section h2 {
 }
 
 .skill-category {
-    max-width: 300px;
-    padding: 1.5rem;
-    text-align: center;
+    max-width: 320px;
+    padding: 2rem;
+    text-align: left;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .skill-category h3 {
-    color: var(--primary-color);
+    color: var(--primary-dark);
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    text-align: center;
 }
 
-/* 5. Section Formation */
+.skill-category p {
+    line-height: 1.8;
+}
+
+/* Mise en couleur des mots-clés de la liste de compétences */
+.skill-category strong {
+    color: var(--primary-color); 
+    font-weight: 700;
+}
+
+/* ---------------------------------- */
+/* 7. Section Formation */
+/* ---------------------------------- */
+
 .formation-section {
     background-color: white; 
 }
@@ -219,63 +307,98 @@ section h2 {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
-    background-color: #e9ecef;
-    border-left: 5px solid var(--primary-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: var(--secondary-color);
+    /* Ligne d'accentuation pour l'impact visuel */
+    border-left: 6px solid var(--primary-color); 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     text-align: left;
 }
 
 .education-card h3 {
     color: var(--primary-color); 
     margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
 }
 
 .education-card .institution, .education-card .dates {
     font-style: italic;
-    color: #6c757d;
+    color: var(--light-text-color);
     margin-bottom: 1rem;
     display: block;
 }
 
-/* 6. Section Contact */
+/* ---------------------------------- */
+/* 8. Section Contact */
+/* ---------------------------------- */
+
+.contact-section {
+    background-color: #f0f0f5;
+}
+
 .contact-form {
     max-width: 600px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 2.5rem;
     text-align: left;
 }
 
 .contact-form input, .contact-form textarea {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
 }
 
 .social-links a {
     color: var(--primary-color);
-    margin: 0 1rem;
+    margin: 0 1.5rem;
     font-weight: 700;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
-/* 7. Pied de Page */
+.social-links a:hover {
+    color: var(--primary-dark);
+}
+
+/* ---------------------------------- */
+/* 9. Pied de Page */
+/* ---------------------------------- */
+
 footer {
     padding: 1.5rem;
-    background-color: #333;
+    background-color: #212529; /* Noir très sombre */
     color: white;
     text-align: center;
     font-size: 0.9rem;
 }
 
-/* Media Queries pour la Réactivité (Mobile First) */
+/* ---------------------------------- */
+/* 10. Media Queries (Responsive Design) */
+/* ---------------------------------- */
+
+@media (max-width: 992px) {
+    /* Ajustement des marges sur les tablettes */
+    section {
+        padding: 5rem 4%;
+    }
+}
+
 @media (max-width: 768px) {
+    /* Ajustement sur les mobiles */
     .navbar {
         flex-direction: column;
         height: auto;
+        padding: 1rem 5%;
     }
     .navbar nav ul {
         flex-direction: column;
@@ -285,17 +408,25 @@ footer {
     .navbar ul li a {
         margin: 0.5rem 0;
     }
+    
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
+    
+    .hero-content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .hero-actions .btn {
+        display: block;
+        margin: 1rem auto;
+    }
+    
     .skills-list {
         flex-direction: column;
         gap: 1.5rem;
     }
     .skill-category {
         max-width: 100%;
-    }
-    section {
-        padding: 4rem 5%;
     }
 }
