@@ -1,24 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================
-    // 1. Défilement Fluide (Smooth Scrolling)
-    // Rend la navigation vers les ancres (#accueil, #projets, etc.) agréable.
-    // ==========================================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            // S'assure que l'ID n'est pas juste '#' et que l'élément existe
-            if (targetId.length > 1 && document.querySelector(targetId)) { 
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    
+    // Fonction pour le Défilement Fluide (Smooth Scrolling)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Empêche le comportement de saut par défaut
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            // S'assure que l'ID n'est pas juste '#'
+            if (targetId.length > 1 && document.querySelector(targetId)) { 
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
-    // ==========================================
+ // ==========================================
     // 2. Gestion du Formulaire de Contact (Formspree avec Fetch API)
     // Permet l'envoi des données sans recharger la page et affiche un statut.
     // ==========================================
@@ -82,20 +80,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 3. Animation d'Apparition du Hero
-    // Ajoute une petite animation au chargement.
-    // ==========================================
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        // Ces styles devraient idéalement être en CSS, mais ils sont conservés ici pour l'animation JS
-        heroContent.style.opacity = 0; 
-        heroContent.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
-        heroContent.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            heroContent.style.opacity = 1;
-            heroContent.style.transform = 'translateY(0)';
-        }, 300); // Délai de 300ms après le chargement du DOM
-    }
+    // Exemple d'animation : Ajout d'une classe pour l'apparition du Hero
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        // Ajoute une classe pour animer l'apparition après le chargement de la page
+        heroContent.style.opacity = 0; // Ajout initial en JS pour être sûr
+        heroContent.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+        heroContent.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            heroContent.style.opacity = 1;
+            heroContent.style.transform = 'translateY(0)';
+        }, 300); 
+    }
 });
+
+
+
