@@ -1,122 +1,135 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBIEY Christ Dany | Développeur Web Full-stack Pro</title>
-    <meta name="description" content="Portfolio de OBIEY Christ Dany, Développeur Web Full-stack avec expertise en Systèmes et Réseaux (ESTAM). Solutions web performantes et sécurisées.">
-    
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBIEY Christ Dany | Développeur Web Full-stack Pro</title>
+    <meta name="description" content="Portfolio de OBIEY Christ Dany, Développeur Web Full-stack avec expertise en Systèmes et Réseaux (ESTAM). Solutions web performantes et sécurisées.">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">OBIEY Christ Dany</div>
-        <nav>
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#formation">Formation</a></li> 
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header class="navbar">
+        <div class="logo">OBIEY Christ Dany</div>
+        <button class="menu-toggle" aria-label="Ouvrir le menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#formation">Formation</a></li> 
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <section id="accueil" class="hero-section">
-            <div class="hero-content">
-                <h1>Bonjour, je suis <strong>OBIEY Christ Dany</strong></h1> 
-                <h2>Développeur Web <strong>Full-stack</strong> Professionnel.</h2> 
-                <p>Développeur Full-stack avec une solide base en <strong>Systèmes et Réseaux (Licence Pro ESTAM)</strong>. J'allie la création d'applications robustes à une expertise en infrastructure et sécurité.</p>
-                <div class="hero-actions">
-                    <a href="#projets" class="btn primary-btn">Voir mes Projets</a>
-                    <a href="documents/DEVELOPPEUR FULL-STACK WEB CV.pdf" download class="btn secondary-btn">Télécharger mon CV</a> 
-                </div>
-            </div>
-        </section>
+    <main>
+        <section id="accueil" class="hero-section">
+            <div class="hero-content">
+                <h1>Bonjour, je suis <strong>OBIEY Christ Dany</strong></h1> 
+                <h2>Développeur Web <strong>Full-stack</strong> Professionnel.</h2> 
+                <p>Développeur Full-stack avec une solide base en <strong>Systèmes et Réseaux (Licence Pro ESTAM)</strong>. J'allie la création d'applications robustes à une expertise en infrastructure et sécurité.</p>
+                <div class="hero-actions">
+                    <a href="#projets" class="btn primary-btn">Voir mes Projets</a>
+                    <a href="documents/DEVELOPPEUR FULL-STACK WEB CV.pdf" download class="btn secondary-btn">Télécharger mon CV</a> 
+                </div>
+            </div>
+        </section>
 
-        <section id="projets" class="projects-section">
-            <h2>Mes Réalisations Clés</h2>
-            <div class="project-list">
-                
-                <article class="project-card">
-                    <img src="images/Macbook-Air-obiey-code.github.io (3).png" alt="Image du Projet Wilric Services">
-                    <h3>Wilric Services (Site vitrine)</h3>
-                    <p>Conception d'une page d'atterrissage moderne et responsive pour une entreprise de services. Focus sur l'UX et l'optimisation mobile.</p>
-                    <p class="technos"><span>Technologies:</span> HTML5, CSS3, JavaScript</p>
-                    <div class="project-links">
-                        <a href="https://obiey-code.github.io/wilric-services/" target="_blank">Voir le Live</a> | 
-                        <a href="https://github.com/Obiey-code/wilric-services" target="_blank">Code Source</a>
-                    </div>
-                </article>
-                
-                <article class="project-card">
-                    <img src="images/Macbook-Air-obiey-code.github.io.png" alt="Image du Projet Book Amazon">
-                    <h3>Book Amazon Clone (Maquette e-commerce)</h3>
-                    <p>Création d'une interface inspirée d'Amazon pour la vente de livres. Démonstration de compétences en structuration et design d'interface.</p>
-                    <p class="technos"><span>Technologies:</span> HTML5, CSS3, JavaScrip</p>
-                    <div class="project-links">
-                        <a href="https://obiey-code.github.io/book_amazon/index.html" target="_blank">Voir le Live</a> | 
-                        <a href="https://github.com/Obiey-code/book_amazon" target="_blank">Code Source</a>
-                    </div>
-                </article>
+        <section id="projets" class="projects-section">
+            <h2>Mes Réalisations Clés</h2>
+            <div class="project-list">
+                
+                <article class="project-card">
+                    <img src="images/Macbook-Air-obiey-code.github.io (3).png" alt="Image du Projet Wilric Services" loading="lazy" width="600" height="337">
+                    <h3>Wilric Services (Site vitrine)</h3>
+                    <p>Conception d'une page d'atterrissage moderne et responsive pour une entreprise de services. Focus sur l'UX et l'optimisation mobile.</p>
+                    <div class="techno-badges">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://obiey-code.github.io/wilric-services/" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> | 
+                        <a href="https://github.com/Obiey-code/wilric-services" target="_blank"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <img src="images/Macbook-Air-obiey-code.github.io.png" alt="Image du Projet Book Amazon" loading="lazy" width="600" height="337">
+                    <h3>Book Amazon Clone (Maquette e-commerce)</h3>
+                    <p>Création d'une interface inspirée d'Amazon pour la vente de livres. Démonstration de compétences en structuration et design d'interface.</p>
+                    <div class="techno-badges">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://obiey-code.github.io/book_amazon/index.html" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> | 
+                        <a href="https://github.com/Obiey-code/book_amazon" target="_blank"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </article>
 
-                </div>
-        </section>
+                </div>
+        </section>
 
-        <section id="competences" class="skills-section">
-            <h2>Compétences Techniques</h2>
-            <div class="skills-list">
-                <div class="skill-category">
-                    <h3>Front-end</h3>
-                    <p>HTML5, CSS3, <strong>JavaScript (ES6+)</strong>, React/Vue/Angular, Sass/Less, Responsive Design</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Back-end</h3>
-                    <p><strong>Node.js (Express)</strong>, Python/PHP, API RESTful, Sécurité web, Architecture de Microservices</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Systèmes, Réseaux & Outils</h3>
-                    <p>SQL, MongoDB, Git/GitHub, Docker, Virtualisation, Administration Système, Protocoles Réseau</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="formation" class="formation-section">
-            <h2>Mon Parcours</h2>
-            <div class="education-card">
-                <h3>Licence Professionnelle | Systèmes et Réseaux Informatiques</h3>
-                <p class="institution">Université ESTAM de Pointe-Noire, Congo Brazzaville</p>
-                <p class="dates">Obtenue en Juin 2025</p>
-                <p>Formation approfondie en administration système, sécurité réseau, et infrastructure IT. Cette expertise renforce ma capacité à déployer et maintenir des applications Full-stack sécurisées et performantes.</p>
-            </div>
-        </section>
+        <section id="competences" class="skills-section">
+            <h2>Compétences Techniques</h2>
+            <div class="skills-list">
+                <div class="skill-category">
+                    <h3>Front-end</h3>
+                    <p>HTML5, CSS3, <strong>JavaScript (ES6+)</strong>, React/Vue/Angular, Sass/Less, Responsive Design</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Back-end</h3>
+                    <p><strong>Node.js (Express)</strong>, Python/PHP, API RESTful, Sécurité web, Architecture de Microservices</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Systèmes, Réseaux & Outils</h3>
+                    <p>SQL, MongoDB, Git/GitHub, Docker, Virtualisation, Administration Système, Protocoles Réseau</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="formation" class="formation-section">
+            <h2>Mon Parcours</h2>
+            <div class="education-card">
+                <h3>Licence Professionnelle | Systèmes et Réseaux Informatiques</h3>
+                <p class="institution">Université ESTAM de Pointe-Noire, Congo Brazzaville</p>
+                <p class="dates">Obtenue en Juin 2025</p>
+                <p>Formation approfondie en administration système, sécurité réseau, et infrastructure IT. Cette expertise renforce ma capacité à déployer et maintenir des applications Full-stack sécurisées et performantes.</p>
+            </div>
+        </section>
 
-        <section id="contact" class="contact-section">
-            <h2>Intéressé par mon profil ?</h2>
-            <p>Discutons de vos besoins Full-stack. Je suis disponible pour de nouveaux défis.</p>
-            
-            <form action="https://formspree.io/f/mpwyrlqk" method="POST" class="contact-form">
-                <input type="text" name="nom" placeholder="Votre Nom" required>
-                <input type="email" name="email" placeholder="Votre Email" required>
-                <textarea name="message" placeholder="Votre Message" rows="5" required></textarea>
-                <button type="submit" class="btn primary-btn">Envoyer</button>
-            </form>
-            
-            <div class="social-links">
-                <a href="mailto:hamsterlecurieux25@gmail.com" target="_blank">Email</a> |
-                <a href="https://www.linkedin.com/in/obiey" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/Obiey-code" target="_blank">GitHub</a> 
-            </div>
-        </section>
-    </main>
+        <section id="contact" class="contact-section">
+            <h2>Intéressé par mon profil ?</h2>
+            <p>Discutons de vos besoins Full-stack. Je suis disponible pour de nouveaux défis.</p>
+            
+            <form action="https://formspree.io/f/mpwyrlqk" method="POST" class="contact-form">
+                <input type="text" name="nom" placeholder="Votre Nom" required>
+                <input type="email" name="email" placeholder="Votre Email" required>
+                <textarea name="message" placeholder="Votre Message" rows="5" required></textarea>
+                <div id="form-status" aria-live="polite"></div>
+                <button type="submit" class="btn primary-btn">Envoyer</button>
+            </form>
+            
+            <div class="social-links">
+                <a href="mailto:hamsterlecurieux25@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a> |
+                <a href="https://www.linkedin.com/in/obiey" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
+                <a href="https://github.com/Obiey-code" target="_blank"><i class="fab fa-github"></i> GitHub</a> 
+            </div>
+        </section>
+    </main>
 
-    <footer>
-        <p>&copy; 2025 OBIEY Christ Dany. Développeur Full-stack. Tous droits réservés.</p>
-    </footer>
+    <footer>
+        <p>&copy; 2025 OBIEY Christ Dany. Développeur Full-stack. Tous droits réservés.</p>
+    </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
