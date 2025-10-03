@@ -12,11 +12,11 @@
 
 :root {
     /* Palette de Couleurs Pro */
-    --primary-color: #007bff;     /* Bleu Vif pour l'Accentuation (Professionnel) */
-    --primary-dark: #0056b3;      /* Bleu foncé pour le survol */
-    --secondary-color: #f8f9fa;   /* Arrière-plan très clair (Blanc cassé) */
-    --text-color: #343a40;        /* Gris foncé pour le texte principal */
-    --light-text-color: #6c757d;  /* Gris moyen pour les descriptions/dates */
+    --primary-color: #007bff;      /* Bleu Vif pour l'Accentuation (Professionnel) */
+    --primary-dark: #0056b3;       /* Bleu foncé pour le survol */
+    --secondary-color: #f8f9fa;    /* Arrière-plan très clair (Blanc cassé) */
+    --text-color: #343a40;         /* Gris foncé pour le texte principal */
+    --light-text-color: #6c757d;   /* Gris moyen pour les descriptions/dates */
     --header-height: 60px;
 }
 
@@ -25,8 +25,8 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--secondary-color);
-    /* Assure que la page utilise tout l'écran verticalement */
     min-height: 100vh; 
+    scroll-behavior: smooth; /* Mieux géré nativement */
 }
 
 /* ---------------------------------- */
@@ -40,33 +40,47 @@ body {
     padding: 1rem 5%;
     height: var(--header-height);
     background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Ombre légère pour la profondeur */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .navbar .logo {
-    font-weight: 700;
-    font-size: 1.4rem; /* Légèrement plus grand */
+    font-weight: 900; /* Plus de punch */
+    font-size: 1.5rem;
     color: var(--primary-color);
+}
+
+/* Bouton Hamburger (caché par défaut sur desktop) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
+    transition: transform 0.3s ease-out; /* Pour l'animation mobile */
 }
 
 .navbar ul li a {
     text-decoration: none;
     color: var(--text-color);
     margin-left: 1.75rem;
+    padding-bottom: 5px; /* Pour l'effet de soulignement */
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 .navbar ul li a:hover {
     color: var(--primary-color);
+    /* Effet de soulignement plus moderne */
+    border-bottom: 3px solid var(--primary-color);
 }
 
 /* ---------------------------------- */
@@ -75,7 +89,7 @@ body {
 
 .btn {
     padding: 0.8rem 1.8rem;
-    border-radius: 50px; /* Bord arrondi pour un look moderne */
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     margin-right: 1.2rem;
@@ -83,8 +97,9 @@ body {
     display: inline-block;
     font-size: 1rem;
     letter-spacing: 0.5px;
+    cursor: pointer; /* Assurer que l'état du curseur est correct */
 }
-
+/* ... (Le reste des styles de boutons primaires et secondaires reste inchangé) ... */
 .primary-btn {
     background-color: var(--primary-color);
     color: white;
@@ -113,9 +128,9 @@ body {
 /* ---------------------------------- */
 /* 3. Styles Généraux des Sections */
 /* ---------------------------------- */
-
+/* ... (Les styles de sections h2 restent inchangés) ... */
 section {
-    padding: 6rem 5%; /* Plus d'espace vertical pour la clarté */
+    padding: 6rem 5%;
     text-align: center;
 }
 
@@ -124,15 +139,14 @@ section h2 {
     margin-bottom: 2.5rem;
     color: #1a1a1a;
     position: relative;
-    /* Ligne décorative sous le titre */
     display: inline-block;
 }
 
 section h2::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
+    width: 80px; /* Légèrement plus large */
+    height: 4px; /* Un peu plus épais */
     background: var(--primary-color);
     margin: 10px auto 0;
     border-radius: 2px;
@@ -142,15 +156,14 @@ section h2::after {
 /* ---------------------------------- */
 /* 4. Section Hero */
 /* ---------------------------------- */
-
+/* ... (Les styles de la section hero restent inchangés) ... */
 .hero-section {
-    /* 100vh moins la hauteur du header pour qu'il remplisse l'écran */
-    min-height: calc(100vh - var(--header-height)); 
+    min-height: calc(100vh - var(--header-height));
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #e9ecef; /* Un gris très clair */
+    background-color: #e9ecef;
 }
 
 .hero-content h1 {
@@ -159,7 +172,7 @@ section h2::after {
 }
 
 .hero-content h1 strong {
-    color: var(--primary-color); /* Met en valeur votre nom */
+    color: var(--primary-color);
 }
 
 .hero-content h2 {
@@ -170,7 +183,7 @@ section h2::after {
 
 .hero-content h2 strong {
     color: #000;
-    font-weight: 900; /* Super gras pour la spécialité */
+    font-weight: 900;
 }
 
 .hero-content p {
@@ -195,18 +208,21 @@ section h2::after {
 .project-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 3rem; /* Plus d'espace entre les cartes */
+    gap: 3rem;
     margin-top: 2rem;
 }
 
 .project-card {
-    background-color: var(--secondary-color);
+    /* Changement: Utiliser un fond blanc sur la section blanche pour faire ressortir l'ombre */
+    background-color: white;
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Ombre plus visible */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     text-align: left;
     transition: transform 0.4s ease-in-out, box-shadow 0.4s;
-    border-top: 5px solid var(--primary-color); /* Bordure colorée */
+    /* Remplacer border-top par un léger dégradé ou une bordure moins dure */
+    border: 1px solid #eee; 
+    border-top: 5px solid var(--primary-color);
 }
 
 .project-card:hover {
@@ -224,22 +240,30 @@ section h2::after {
 }
 
 .project-card h3 {
-    color: var(--primary-color);
+    color: var(--primary-dark); /* Un bleu plus foncé pour le titre */
     margin-bottom: 0.5rem;
     font-size: 1.35rem;
 }
 
-.project-card .technos {
-    font-size: 0.95rem;
-    color: var(--light-text-color);
-    margin: 0.75rem 0 1.5rem;
+/* Nouveau style pour les badges de technologies */
+.techno-badges {
+    margin: 1rem 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.project-card .technos span {
-    font-weight: 700;
-    color: var(--text-color);
-    margin-right: 5px;
+.techno-badges span {
+    display: inline-block;
+    background-color: var(--secondary-color); /* Fond clair pour les badges */
+    color: var(--primary-dark);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid #ddd;
 }
+/* Fin des badges */
 
 .project-links a {
     color: var(--primary-color);
@@ -248,15 +272,18 @@ section h2::after {
     transition: color 0.3s;
 }
 
+.project-links a i {
+    margin-right: 5px; /* Espace entre icône et texte */
+}
+
 .project-links a:hover {
     color: var(--primary-dark);
     text-decoration: underline;
 }
 
 /* ---------------------------------- */
-/* 6. Section Compétences */
+/* 6. Section Compétences et 7. Formation (Styles inchangés) */
 /* ---------------------------------- */
-
 .skills-section {
     background-color: #f0f0f5;
 }
@@ -289,15 +316,10 @@ section h2::after {
     line-height: 1.8;
 }
 
-/* Mise en couleur des mots-clés de la liste de compétences */
 .skill-category strong {
     color: var(--primary-color); 
     font-weight: 700;
 }
-
-/* ---------------------------------- */
-/* 7. Section Formation */
-/* ---------------------------------- */
 
 .formation-section {
     background-color: white; 
@@ -308,7 +330,6 @@ section h2::after {
     margin: 0 auto;
     padding: 2rem;
     background-color: var(--secondary-color);
-    /* Ligne d'accentuation pour l'impact visuel */
     border-left: 6px solid var(--primary-color); 
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -358,6 +379,11 @@ section h2::after {
     outline: none;
 }
 
+#form-status {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
 .social-links a {
     color: var(--primary-color);
     margin: 0 1.5rem;
@@ -373,10 +399,10 @@ section h2::after {
 /* ---------------------------------- */
 /* 9. Pied de Page */
 /* ---------------------------------- */
-
+/* ... (Styles du pied de page inchangés) ... */
 footer {
     padding: 1.5rem;
-    background-color: #212529; /* Noir très sombre */
+    background-color: #212529;
     color: white;
     text-align: center;
     font-size: 0.9rem;
@@ -386,47 +412,74 @@ footer {
 /* 10. Media Queries (Responsive Design) */
 /* ---------------------------------- */
 
-@media (max-width: 992px) {
-    /* Ajustement des marges sur les tablettes */
-    section {
-        padding: 5rem 4%;
-    }
-}
-
 @media (max-width: 768px) {
-    /* Ajustement sur les mobiles */
-    .navbar {
-        flex-direction: column;
-        height: auto;
-        padding: 1rem 5%;
+    
+    /* Afficher le bouton hamburger et cacher la navigation */
+    .menu-toggle {
+        display: block;
     }
-    .navbar nav ul {
+
+    .navbar {
+        padding: 1rem 5%;
+        flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+    }
+
+    .navbar nav {
+        width: 100%; /* Prend toute la largeur */
+        /* Cacher la navigation par défaut */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+
+    .navbar nav.open {
+        /* Classe ajoutée par JS pour ouvrir le menu */
+        max-height: 300px; /* Assez grand pour contenir la liste */
+    }
+
+    .navbar .nav-list {
         flex-direction: column;
         align-items: center;
-        padding-top: 10px;
+        padding: 10px 0;
+        /* Ajout d'une bordure pour séparer visuellement le menu du logo */
+        border-top: 1px solid #eee; 
     }
+
     .navbar ul li a {
         margin: 0.5rem 0;
+        padding: 10px 0;
+        display: block;
+        width: 100%;
+        text-align: center;
     }
     
     .hero-content h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
     
     .hero-content h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     
+    /* Boutons en colonnes sur mobile */
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
     .hero-actions .btn {
-        display: block;
-        margin: 1rem auto;
+        margin: 0; /* Suppression des marges horizontales pour les boutons block */
     }
-    
+
     .skills-list {
         flex-direction: column;
         gap: 1.5rem;
     }
     .skill-category {
         max-width: 100%;
+    }
+    .skill-category h3 {
+        text-align: left; /* Retour à l'alignement à gauche sur mobile pour plus d'espace */
     }
 }
