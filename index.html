@@ -11,14 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
     <header class="navbar">
-        <div class="logo">OBIEY Christ Dany</div>
-        <button class="menu-toggle" aria-label="Ouvrir le menu">
+        <a href="#accueil" class="logo">OBIEY Christ Dany</a>
+        <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-list">
             <i class="fas fa-bars"></i>
         </button>
         <nav>
-            <ul class="nav-list">
+            <ul class="nav-list" id="nav-list">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#competences">Compétences</a></li>
@@ -28,15 +29,15 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section id="accueil" class="hero-section">
             <div class="hero-content">
                 <h1>Bonjour, je suis <strong>OBIEY Christ Dany</strong></h1> 
-                <h2>Développeur Web <strong>Full-stack</strong> Professionnel.</h2> 
+                <h2>Développeur Web <span lang="en">Full-stack</span> Professionnel.</h2> 
                 <p>Développeur Full-stack avec une solide base en <strong>Systèmes et Réseaux (Licence Pro ESTAM)</strong>. J'allie la création d'applications robustes à une expertise en infrastructure et sécurité.</p>
                 <div class="hero-actions">
                     <a href="#projets" class="btn primary-btn">Voir mes Projets</a>
-                    <a href="documents/DEVELOPPEUR FULL-STACK WEB CV.pdf" download class="btn secondary-btn">Télécharger mon CV</a> 
+                    <a href="documents/DEVELOPPEUR FULL-STACK WEB CV.pdf" download class="btn secondary-btn" type="application/pdf">Télécharger mon CV</a> 
                 </div>
             </div>
         </section>
@@ -45,6 +46,23 @@
             <h2>Mes Réalisations Clés</h2>
             <div class="project-list">
                 
+                <article class="project-card">
+                    <img src="images/Global-Group-preview.png" alt="Image du Projet Global Group, un site de services multi-secteurs" loading="lazy" width="600" height="337">
+                    <h3>Global Group (Site Institutionnel)</h3>
+                    <p>Création d'un site vitrine complet pour un groupe multisectoriel (Transport, Commerce, Prestations). Conception moderne et navigation UX optimisée pour présenter l'ensemble des services.</p>
+                    <div class="techno-badges">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>Bootstrap</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://obiey-code.github.io/Global-Group/" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> 
+                        <span aria-hidden="true">|</span> 
+                        <a href="https://github.com/Obiey-code/Global-Group" target="_blank"><i class="fab fa-github"></i> Code Source</a>
+                    </div>
+                </article>
+
                 <article class="project-card">
                     <img src="images/Macbook-Air-obiey-code.github.io (3).png" alt="Image du Projet Wilric Services" loading="lazy" width="600" height="337">
                     <h3>Wilric Services (Site vitrine)</h3>
@@ -55,7 +73,8 @@
                         <span>JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://obiey-code.github.io/wilric-services/" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> | 
+                        <a href="https://obiey-code.github.io/wilric-services/" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> 
+                        <span aria-hidden="true">|</span> 
                         <a href="https://github.com/Obiey-code/wilric-services" target="_blank"><i class="fab fa-github"></i> Code Source</a>
                     </div>
                 </article>
@@ -70,12 +89,13 @@
                         <span>JavaScript</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://obiey-code.github.io/book_amazon/index.html" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> | 
+                        <a href="https://obiey-code.github.io/book_amazon/index.html" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> 
+                        <span aria-hidden="true">|</span> 
                         <a href="https://github.com/Obiey-code/book_amazon" target="_blank"><i class="fab fa-github"></i> Code Source</a>
                     </div>
                 </article>
 
-                </div>
+            </div>
         </section>
 
         <section id="competences" class="skills-section">
@@ -111,16 +131,24 @@
             <p>Discutons de vos besoins Full-stack. Je suis disponible pour de nouveaux défis.</p>
             
             <form action="https://formspree.io/f/mpwyrlqk" method="POST" class="contact-form">
-                <input type="text" name="nom" placeholder="Votre Nom" required>
-                <input type="email" name="email" placeholder="Votre Email" required>
-                <textarea name="message" placeholder="Votre Message" rows="5" required></textarea>
+                <label for="nom" class="visually-hidden">Votre Nom</label>
+                <input type="text" name="nom" id="nom" placeholder="Votre Nom" required>
+                
+                <label for="email" class="visually-hidden">Votre Email</label>
+                <input type="email" name="email" id="email" placeholder="Votre Email" required>
+                
+                <label for="message" class="visually-hidden">Votre Message</label>
+                <textarea name="message" id="message" placeholder="Votre Message" rows="5" required></textarea>
+                
                 <div id="form-status" aria-live="polite"></div>
                 <button type="submit" class="btn primary-btn">Envoyer</button>
             </form>
             
             <div class="social-links">
-                <a href="mailto:hamsterlecurieux25@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a> |
-                <a href="https://www.linkedin.com/in/obiey" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> |
+                <a href="mailto:hamsterlecurieux25@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a> 
+                <span aria-hidden="true">|</span>
+                <a href="https://www.linkedin.com/in/obiey" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> 
+                <span aria-hidden="true">|</span>
                 <a href="https://github.com/Obiey-code" target="_blank"><i class="fab fa-github"></i> GitHub</a> 
             </div>
         </section>
