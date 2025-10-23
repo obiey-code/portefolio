@@ -1,18 +1,20 @@
-/* Fichier: script.js - Optimisé */
+/* Fichier: script.js - Complet et Optimisé */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
-    // const navList = document.querySelector('.nav-list'); // Non utilisé directement, laissé en commentaire
     const contactForm = document.querySelector('.contact-form');
     const formStatus = document.getElementById('form-status');
     const heroContent = document.querySelector('.hero-content');
 
     // ==========================================================
     // --- Fonction d'aide pour la gestion du menu (A11Y) ---
-    // Cette fonction centralise la gestion des classes et des attributs ARIA.
     // ==========================================================
+    /**
+     * Met à jour l'état visuel et ARIA du menu.
+     * @param {boolean} isOpen - L'état souhaité (true pour ouvert, false pour fermé).
+     */
     const updateMenuState = (isOpen) => {
         const icon = menuToggle.querySelector('i');
         
@@ -20,13 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.add('open');
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-xmark');
-            // Met à jour l'état ARIA: menu ouvert
             menuToggle.setAttribute('aria-expanded', 'true');
         } else {
             nav.classList.remove('open');
             icon.classList.remove('fa-xmark');
             icon.classList.add('fa-bars');
-            // Met à jour l'état ARIA: menu fermé
             menuToggle.setAttribute('aria-expanded', 'false');
         }
     };
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Gestion du Menu Hamburger (Responsive) ---
     // ==========================================================
     if (menuToggle && nav) {
-        // Initialisation de l'état ARIA au chargement (doit correspondre au CSS par défaut)
+        // Initialisation de l'état ARIA au chargement
         menuToggle.setAttribute('aria-expanded', 'false');
 
         menuToggle.addEventListener('click', () => {
@@ -45,22 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================
-    // --- 2. Gestion du Défilement Fluide (Smooth Scrolling) ---
-    // (Inclut la fermeture du menu pour l'UX mobile)
+    // --- 2. Gestion du Défilement Fluide & Fermeture Menu ---
     // ==========================================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
-            if (targetElement) {
+            if (targetElement && targetId !== '#') { // Évite de défiler si href="#"
                 e.preventDefault();
 
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
                 
-                // Fermer le menu après le clic sur un lien (sur mobile)
+                // Fermer le menu après le clic sur un lien (pour les appareils mobiles)
                 if (nav && nav.classList.contains('open')) {
                     updateMenuState(false);
                 }
@@ -69,19 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================================
-    // --- 3. Animation : Apparition du Hero (Déclenchement CSS) ---
-    // Utilise une classe pour déléguer l'animation au CSS, plus performant.
+    // --- 3. Animation : Apparition du Hero ---
     // ==========================================================
     if (heroContent) {
-        // Ajout d'une classe après chargement pour déclencher l'animation CSS
+        // Déclenche l'animation CSS (classe .is-loaded) après un court délai pour l'effet d'apparition
         setTimeout(() => {
             heroContent.classList.add('is-loaded');
         }, 300);
     }
 
     // ==========================================================
-    // --- 4. Gestionnaire de Formulaire de Contact (AJAX Asynchrone) ---
-    // Utilise fetch et async/await pour une expérience utilisateur sans rechargement.
+    // --- 4. Gestionnaire de Formulaire de Contact (AJAX) ---
+    // Utilise Formspree ou une autre action similaire
     // ==========================================================
     if (contactForm && formStatus) {
         contactForm.addEventListener('submit', async (e) => {
@@ -89,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const submitButton = contactForm.querySelector('button[type="submit"]');
             
-            // État de chargement (UX)
+            // État de chargement
             submitButton.disabled = true;
             submitButton.textContent = 'Envoi en cours...';
-            formStatus.textContent = ''; // Vider le statut précédent
+            formStatus.textContent = ''; 
 
             try {
                 const formData = new FormData(contactForm);
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     formStatus.textContent = "✅ Message envoyé ! Merci pour votre intérêt, je vous recontacterai rapidement à l'adresse fournie.";
                     contactForm.reset();
                 } else {
-                    // Erreur (inclut la tentative de lire l'erreur Formspree)
+                    // Erreur
                     const data = await response.json();
                     const errorMessage = data.error 
                         ? `❌ Erreur : ${data.error}` 
@@ -121,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
             } catch (error) {
-                // Erreur de réseau (e.g., hors ligne)
+                // Erreur de réseau
                 formStatus.style.color = 'red';
                 formStatus.textContent = "❌ Une erreur de connexion s'est produite. Veuillez vérifier votre réseau.";
             } finally {
@@ -129,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitButton.disabled = false;
                 submitButton.textContent = 'Envoyer';
 
-                // Nettoyer le message après 10 secondes (bonne pratique UX)
+                // Nettoyer le message après 10 secondes
                 setTimeout(() => {
                     formStatus.textContent = '';
                 }, 10000);
