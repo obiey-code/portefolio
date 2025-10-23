@@ -88,6 +88,7 @@ body {
     font-size: 1.5rem;
     color: var(--primary-color);
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 /* Bouton Hamburger (caché par défaut sur desktop) */
@@ -212,7 +213,7 @@ section h2::after {
 
 
 /* ---------------------------------- */
-/* 4. Section Hero (Animation CSS ajoutée) */
+/* 4. Section Hero (Avec Photo) */
 /* ---------------------------------- */
 
 .hero-section {
@@ -224,17 +225,47 @@ section h2::after {
     background-color: #e9ecef;
 }
 
-/* État initial (caché) pour l'animation JS */
+/* Modifie hero-content pour utiliser flexbox et positionner texte/image */
 .hero-content {
+    display: flex; 
+    flex-direction: column; /* Par défaut en colonne sur mobile */
+    align-items: center; 
+    gap: 3rem; 
+    max-width: 1000px;
+    padding: 2rem; 
+
+    /* Styles d'animation */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s;
 }
 
-/* État final (déclenché par la classe .is-loaded du JS) */
 .hero-content.is-loaded {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Style du conteneur de l'image (Rond) */
+.hero-image-container {
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%; /* Rendre l'image ronde */
+    overflow: hidden; 
+    border: 5px solid var(--primary-color); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+    flex-shrink: 0; 
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre le cercle sans déformation */
+    object-position: center; 
+    display: block; 
+}
+
+.hero-text-content {
+    text-align: center; /* Garde le texte centré par défaut (mobile) */
 }
 
 .hero-content h1 {
@@ -259,7 +290,7 @@ section h2::after {
 
 .hero-content p {
     max-width: 800px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 2.5rem; /* Centré par défaut */
     font-size: 1.15rem;
 }
 
@@ -333,7 +364,7 @@ section h2::after {
     padding: 4px 10px;
     border-radius: 50px;
     font-size: 0.8rem;
-    font-weight: 700; /* Augmentation du poids de la police pour la lisibilité */
+    font-weight: 700;
     border: 1px solid #ddd;
 }
 
@@ -445,7 +476,6 @@ section h2::after {
     border-radius: 6px;
     font-size: 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
-    /* Ajout du support pour les labels visuellement masqués */
     box-shadow: none; 
 }
 
@@ -492,6 +522,30 @@ footer {
 /* 10. Media Queries (Responsive Design) */
 /* ---------------------------------- */
 
+@media (min-width: 992px) { /* Pour les écrans plus larges (Desktop) */
+    
+    .hero-content {
+        flex-direction: row; /* Aligne l'image et le texte côte à côte */
+        justify-content: center;
+        align-items: center;
+        gap: 5rem; /* Augmente l'espace entre l'image et le texte */
+        text-align: left; /* Aligne le contenu du conteneur texte à gauche */
+    }
+
+    .hero-text-content {
+        text-align: left; /* Force le texte à être aligné à gauche */
+        max-width: 600px; /* Limite la largeur du texte pour une meilleure lisibilité */
+    }
+
+    .hero-content p {
+        margin: 0 0 2.5rem 0; /* Ajuste la marge du paragraphe pour l'alignement à gauche */
+    }
+
+    .hero-image-container {
+        order: 2; /* Place l'image à droite du texte */
+    }
+}
+
 @media (max-width: 768px) {
     
     /* Afficher le bouton hamburger et cacher la navigation */
@@ -506,14 +560,12 @@ footer {
 
     .navbar nav {
         width: 100%; 
-        /* Cacher la navigation par défaut */
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.5s ease-in-out;
     }
 
     .navbar nav.open {
-        /* Classe ajoutée par JS pour ouvrir le menu */
         max-height: 300px; 
     }
 
@@ -535,6 +587,17 @@ footer {
     /* Réduction du padding général sur mobile */
     section {
         padding: 4rem 5%;
+    }
+
+    .hero-content {
+        gap: 2rem; /* Réduit l'espace sur mobile */
+    }
+
+    .hero-image-container {
+        width: 180px; /* Réduit la taille de l'image sur mobile */
+        height: 180px;
+        border-width: 3px;
+        order: -1; /* Place l'image au-dessus du texte sur mobile */
     }
     
     .hero-content h1 {
