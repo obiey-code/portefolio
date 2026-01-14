@@ -3,168 +3,1087 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBIEY Christ Dany | Développeur Web Full-stack Pro</title>
-    <meta name="description" content="Portfolio de OBIEY Christ Dany, Développeur Web Full-stack avec expertise en Systèmes et Réseaux (ESTAM). Solutions web performantes et sécurisées.">
+    <title>OBIEY Christ Dany | Développeur Full-stack & DevOps</title>
+    <meta name="description" content="Développeur Full-stack professionnel avec expertise Angular, Flutter, Django et DevOps. Création d'applications web et mobiles performantes.">
     
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Styles intégrés -->
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: "</>";
+            color: var(--secondary);
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-list a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-list a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            top: -300px;
+            right: -200px;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--gray);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .tech-badges {
+            position: absolute;
+            bottom: 20px;
+            left: -20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        /* Sections communes */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: #e0f2fe;
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        /* Compétences */
+        .skills-container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .skills-category {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-title i {
+            color: var(--secondary);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: #f1f5f9;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .skill-item.highlighted {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        /* Formation & Expérience */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .date {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Contact */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-detail i {
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .tech-badges {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-list {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-list.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 50px);
+                margin-left: 50px !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Passer au contenu</a>
 
-    <header class="navbar">
-        <a href="#accueil" class="logo">OBIEY Christ Dany</a>
-        <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-list">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav>
-            <ul class="nav-list" id="nav-list">
-                <li><a href="#accueil">Accueil</a></li>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#hero" class="logo">OBIEY Christ Dany</a>
+            <button class="menu-toggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-list">
+                <li><a href="#hero">Accueil</a></li>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#competences">Compétences</a></li>
-                <li><a href="#formation">Formation</a></li> 
+                <li><a href="#parcours">Parcours</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main id="main-content">
-        <section id="accueil" class="hero-section">
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
             <div class="hero-content">
-                
-                <div class="hero-text-content">
-                    <h1>Bonjour, je suis <strong>OBIEY Christ Dany</strong></h1> 
-                    <h2>Développeur Web <span lang="en">Full-stack</span> Professionnel.</h2> 
-                    <p>Développeur Full-stack avec une solide base en <strong>Systèmes et Réseaux (Licence Pro ESTAM)</strong>. J'allie la création d'applications robustes à une expertise en infrastructure et sécurité.</p>
-                    <div class="hero-actions">
-                        <a href="#projets" class="btn primary-btn">Voir mes Projets</a>
-                        <a href="documents/DEVELOPPEUR FULL-STACK WEB CV.pdf" download class="btn secondary-btn" type="application/pdf">Télécharger mon CV</a> 
+                <div class="hero-text">
+                    <h1>Bonjour, je suis <span>OBIEY Christ Dany</span></h1>
+                    <h2>Développeur Full-stack & DevOps</h2>
+                    <p>Je conçois et développe des applications web et mobiles performantes avec <span class="highlight">Angular, Flutter, Django et Docker</span>. Alliant développement et infrastructure pour des solutions complètes.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#projets" class="btn btn-primary">
+                            <i class="fas fa-code"></i> Voir mes projets
+                        </a>
+                        <a href="documents/DEVELOPPEUR%20FULL-STACK%20WEB%20CV.pdf" download class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Télécharger CV
+                        </a>
                     </div>
                 </div>
                 
-                <div class="hero-image-container">
-                    <img src="images/1000012236-removebg-preview.png" alt="Photo de profil de OBIEY Christ Dany" loading="eager">
+                <div class="hero-image">
+                    <img src="images/1000012236-removebg-preview.png" alt="OBIEY Christ Dany - Développeur Full-stack">
+                    
+                    <div class="tech-badges">
+                        <div class="tech-badge">
+                            <i class="fab fa-angular"></i> Angular
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fab fa-python"></i> Django
+                        </div>
+                        <div class="tech-badge">
+                            <i class="fab fa-docker"></i> Docker
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="projets" class="projects-section">
-            <h2>Mes Réalisations Clés</h2>
-            <div class="project-list">
+    <!-- Projets -->
+    <section id="projets" class="projects">
+        <div class="container">
+            <h2 class="section-title">Mes Réalisations</h2>
+            <div class="projects-grid">
                 
                 <article class="project-card">
-                    <img src="images/Macbook-Air-obiey-code.github.io (9).png" alt="Image du Projet Global Group, un site de services multi-secteurs" loading="lazy" width="600" height="337">
-                    <h3>Global Group (Site Institutionnel)</h3>
-                    <p>Création d'un site vitrine complet pour un groupe multisectoriel (Construction et le Génie Civil, Gestion Immobilière, Agriculture et Agroalimentaire, Énergie et Environnement, Services Financiers, Technologie et Innovation). Conception moderne et navigation UX optimisée pour présenter l'ensemble des services.</p>
-                    <div class="techno-badges">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>Bootstrap</span>
-                        <span>JavaScript</span>
+                    <div class="project-image">
+                        <img src="images/Macbook-Air-obiey-code.github.io (9).png" alt="Global Group - Site institutionnel">
                     </div>
-                    <div class="project-links">
-                        <a href="https://obiey-code.github.io/Global-Group/" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> 
-                        <span aria-hidden="true">|</span> 
-                        <a href="https://github.com/Obiey-code/Global-Group" target="_blank"><i class="fab fa-github"></i> Code Source</a>
+                    <div class="project-content">
+                        <h3 class="project-title">Global Group</h3>
+                        <p class="project-description">Site vitrine professionnel pour un groupe multisectoriel avec présentation des services et contact.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://obiey-code.github.io/Global-Group/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Obiey-code/Global-Group" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
                     </div>
                 </article>
 
                 <article class="project-card">
-                    <img src="images/Macbook-Air-obiey-code.github.io (3).png" alt="Image du Projet Wilric Services" loading="lazy" width="600" height="337">
-                    <h3>Wilric Services (Site vitrine)</h3>
-                    <p>Conception d'une page d'atterrissage moderne et responsive pour une entreprise de services. Focus sur l'UX et l'optimisation mobile.</p>
-                    <div class="techno-badges">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
+                    <div class="project-image">
+                        <img src="images/Macbook-Air-obiey-code.github.io (3).png" alt="Wilric Services - Landing page">
                     </div>
-                    <div class="project-links">
-                        <a href="https://obiey-code.github.io/wilric-services/" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> 
-                        <span aria-hidden="true">|</span> 
-                        <a href="https://github.com/Obiey-code/wilric-services" target="_blank"><i class="fab fa-github"></i> Code Source</a>
+                    <div class="project-content">
+                        <h3 class="project-title">Wilric Services</h3>
+                        <p class="project-description">Landing page moderne et responsive pour une entreprise de services avec formulaire de contact.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://obiey-code.github.io/wilric-services/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Obiey-code/wilric-services" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
                     </div>
                 </article>
-                
+
                 <article class="project-card">
-                    <img src="images/Macbook-Air-obiey-code.github.io.png" alt="Image du Projet Book Amazon" loading="lazy" width="600" height="337">
-                    <h3>Book Amazon Clone (Maquette e-commerce)</h3>
-                    <p>Création d'une interface inspirée d'Amazon pour la vente de livres. Démonstration de compétences en structuration et design d'interface.</p>
-                    <div class="techno-badges">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
+                    <div class="project-image">
+                        <img src="images/Macbook-Air-obiey-code.github.io.png" alt="Amazon Book Clone - E-commerce">
                     </div>
-                    <div class="project-links">
-                        <a href="https://obiey-code.github.io/book_amazon/index.html" target="_blank"><i class="fas fa-eye"></i> Voir le Live</a> 
-                        <span aria-hidden="true">|</span> 
-                        <a href="https://github.com/Obiey-code/book_amazon" target="_blank"><i class="fab fa-github"></i> Code Source</a>
+                    <div class="project-content">
+                        <h3 class="project-title">Amazon Book Clone</h3>
+                        <p class="project-description">Interface e-commerce inspirée d'Amazon avec panier et sélection de livres.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://obiey-code.github.io/book_amazon/index.html" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Obiey-code/book_amazon" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
                     </div>
                 </article>
 
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="competences" class="skills-section">
-            <h2>Compétences Techniques</h2>
-            <div class="skills-list">
-                <div class="skill-category">
-                    <h3>Front-end</h3>
-                    <p>HTML5, CSS3, <strong>JavaScript (ES6+)</strong>, React/Vue/Angular, Sass/Less, Responsive Design</p>
+    <!-- Compétences -->
+    <section id="competences" class="skills">
+        <div class="container">
+            <h2 class="section-title">Mes Compétences</h2>
+            <div class="skills-container">
+                
+                <div class="skills-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-desktop"></i> Front-end & Mobile
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item highlighted">
+                            <i class="fab fa-angular"></i> Angular
+                        </div>
+                        <div class="skill-item highlighted">
+                            <i class="fab fa-react"></i> React
+                        </div>
+                        <div class="skill-item highlighted">
+                            <i class="fab fa-flutter"></i> Flutter
+                        </div>
+                        <div class="skill-item">TypeScript</div>
+                        <div class="skill-item">HTML5 / CSS3</div>
+                        <div class="skill-item">Sass / Bootstrap</div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Back-end</h3>
-                    <p><strong>Node.js (Express)</strong>, Python/PHP, API RESTful, Sécurité web, Architecture de Microservices</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Systèmes, Réseaux & Outils</h3>
-                    <p>SQL, MongoDB, Git/GitHub, Docker, Virtualisation, Administration Système, Protocoles Réseau</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="formation" class="formation-section">
-            <h2>Mon Parcours</h2>
-            <div class="education-card">
-                <h3>Licence Professionnelle | Systèmes et Réseaux Informatiques</h3>
-                <p class="institution">Université ESTAM de Pointe-Noire, Congo Brazzaville</p>
-                <p class="dates">Obtenue en Juin 2025</p>
-                <p>Formation approfondie en administration système, sécurité réseau, et infrastructure IT. Cette expertise renforce ma capacité à déployer et maintenir des applications Full-stack sécurisées et performantes.</p>
-            </div>
-        </section>
 
-        <section id="contact" class="contact-section">
-            <h2>Intéressé par mon profil ?</h2>
-            <p>Discutons de vos besoins Full-stack. Je suis disponible pour de nouveaux défis.</p>
-            
-            <form action="https://formspree.io/f/mpwyrlqk" method="POST" class="contact-form">
-                <label for="nom" class="visually-hidden">Votre Nom</label>
-                <input type="text" name="nom" id="nom" placeholder="Votre Nom" required>
-                
-                <label for="email" class="visually-hidden">Votre Email</label>
-                <input type="email" name="email" id="email" placeholder="Votre Email" required>
-                
-                <label for="message" class="visually-hidden">Votre Message</label>
-                <textarea name="message" id="message" placeholder="Votre Message" rows="5" required></textarea>
-                
-                <div id="form-status" aria-live="polite"></div>
-                <button type="submit" class="btn primary-btn">Envoyer</button>
-            </form>
-            
-            <div class="social-links">
-                <a href="mailto:hamsterlecurieux25@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a> 
-                <span aria-hidden="true">|</span>
-                <a href="https://www.linkedin.com/in/obiey" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> 
-                <span aria-hidden="true">|</span>
-                <a href="https://github.com/Obiey-code" target="_blank"><i class="fab fa-github"></i> GitHub</a> 
-            </div>
-        </section>
-    </main>
+                <div class="skills-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-server"></i> Back-end & DevOps
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item highlighted">
+                            <i class="fab fa-python"></i> Python / Django
+                        </div>
+                        <div class="skill-item">Node.js / Express</div>
+                        <div class="skill-item">REST APIs</div>
+                        <div class="skill-item">PostgreSQL / MySQL</div>
+                        <div class="skill-item highlighted">
+                            <i class="fab fa-docker"></i> Docker
+                        </div>
+                        <div class="skill-item">Linux / Nginx</div>
+                    </div>
+                </div>
 
+                <div class="skills-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-tools"></i> Outils & Méthodes
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item highlighted">
+                            <i class="fab fa-git-alt"></i> Git & GitHub
+                        </div>
+                        <div class="skill-item">Agile / Scrum</div>
+                        <div class="skill-item">Figma / Adobe XD</div>
+                        <div class="skill-item">Jest / Cypress</div>
+                        <div class="skill-item">CI/CD</div>
+                        <div class="skill-item">VPS Management</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Parcours -->
+    <section id="parcours" class="journey">
+        <div class="container">
+            <h2 class="section-title">Mon Parcours</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Licence Professionnelle - Systèmes & Réseaux</h3>
+                        <span class="date">2022 - 2025</span>
+                        <p>Université ESTAM, Pointe-Noire, Congo Brazzaville</p>
+                        <p>Spécialisation en administration système, sécurité réseau et infrastructure IT. Formation complète en déploiement et maintenance d'applications.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Formateur & Développeur Freelance</h3>
+                        <span class="date">2024 - Présent</span>
+                        <p>Développement Full-stack & Formation Tech</p>
+                        <p>• Formation en développement web (HTML, CSS, JS)<br>
+                           • Développement d'applications avec Angular et Django<br>
+                           • Configuration et déploiement sur VPS (Linux, Docker)</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Projets Professionnels Full-stack</h3>
+                        <span class="date">2023 - Présent</span>
+                        <p>Applications Web & Mobile Complètes</p>
+                        <p>• Architecture et développement d'applications complètes<br>
+                           • Intégration de services tiers et APIs<br>
+                           • Déploiement et maintenance sur serveurs cloud</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Travaillons Ensemble</h2>
+            <div class="contact-wrapper">
+                
+                <div class="contact-info">
+                    <h3>Contactez-moi</h3>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>hamsterlecurieux25@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Localisation</strong>
+                                <p>Brazzaville, République du Congo</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-briefcase"></i>
+                            <div>
+                                <strong>Disponibilité</strong>
+                                <p>Recherche de nouvelles opportunités</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/obiey" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Obiey-code" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:hamsterlecurieux25@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form" action="https://formspree.io/f/mpwyrlqk" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Objet de votre message">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Décrivez votre projet..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Envoyer le message
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 OBIEY Christ Dany. Développeur Full-stack. Tous droits réservés.</p>
+        <div class="container">
+            <p>&copy; 2025 OBIEY Christ Dany. Tous droits réservés.</p>
+            <p>Développeur Full-stack & DevOps | Brazzaville, Congo</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript intégré -->
+    <script>
+        // Menu mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-list').classList.toggle('active');
+            this.setAttribute('aria-expanded', 
+                this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+            );
+        });
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('.nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-list').classList.remove('active');
+                document.querySelector('.menu-toggle').setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        document.querySelectorAll('.project-card, .skill-item, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Gestion du formulaire
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                submitBtn.disabled = true;
+                
+                try {
+                    const formData = new FormData(contactForm);
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        alert('Message envoyé avec succès !');
+                        contactForm.reset();
+                    } else {
+                        alert('Une erreur est survenue. Veuillez réessayer.');
+                    }
+                } catch (error) {
+                    alert('Erreur de connexion. Veuillez vérifier votre connexion internet.');
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // Smooth scroll amélioré
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
