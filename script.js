@@ -123,16 +123,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function goToSlide(index) {
             const maxIdx = getMaxIndex();
-            currentIndex = Math.min(Math.max(index, 0), maxIdx);
+
+            if (maxIdx <= 0) {
+                currentIndex = 0;
+            } else if (index > maxIdx) {
+                currentIndex = 0; // Navigation circulaire : retour au début
+            } else if (index < 0) {
+                currentIndex = maxIdx; // Navigation circulaire : passage à la fin
+            } else {
+                currentIndex = index;
+            }
 
             pauseVideos();
 
             const slideWidthPercent = 100 / getVisibleCount();
             track.style.transform = `translateX(-${currentIndex * slideWidthPercent}%)`;
 
-            // Mise à jour des boutons
-            if (prevBtn) prevBtn.disabled = currentIndex === 0;
-            if (nextBtn) nextBtn.disabled = currentIndex >= maxIdx;
+            // Les boutons restent actifs pour permettre la navigation circulaire en boucle
+            if (prevBtn) prevBtn.disabled = maxIdx <= 0;
+            if (nextBtn) nextBtn.disabled = maxIdx <= 0;
 
             // Mise à jour des puces
             if (indicatorsContainer) {
@@ -143,13 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Événements boutons Gauche / Droite
+        // Événements boutons Gauche / Droite avec gestion préventive
         if (prevBtn) {
-            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                goToSlide(currentIndex - 1);
+            });
         }
 
         if (nextBtn) {
-            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                goToSlide(currentIndex + 1);
+            });
         }
 
         // Support Tactile (Swipe)
@@ -201,12 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalBtnClose = document.getElementById('modal-btn-close');
     const modalBtnOpenAll = document.getElementById('modal-btn-open-all');
 
-    // Liste complète des 4 liens MVP FoncierChain pour le bouton "Tout ouvrir"
+    // Liste complète des liens MVP & Sites Vitrines pour le bouton "Tout ouvrir"
     const foncierMvpUrls = [
+        { title: "Wilric Services & Divers - Site Vitrine BTP", url: "https://obiey-code.github.io/wilric-services/index.html" },
         { title: "Web App Vercel", url: "https://foncier-chain-web1.vercel.app/" },
         { title: "Mobile Version Web", url: "https://foncierchain.github.io/FoncierChain-Mobile1/" },
         { title: "Application Android (APK)", url: "https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" },
-        { title: "Site Vitrine Projet", url: "https://foncierchain.github.io/FoncierChain/" }
+        { title: "Site Vitrine FoncierChain", url: "https://foncierchain.github.io/FoncierChain/" }
     ];
 
     function openModal(url, title) {

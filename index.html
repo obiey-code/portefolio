@@ -280,6 +280,10 @@
             transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
         }
 
+        .carousel-btn i {
+            pointer-events: none;
+        }
+
         .carousel-btn:hover {
             background: var(--primary);
             color: white;
@@ -942,19 +946,54 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- SITE VITRINE WILRIC SERVICES & DIVERS -->
+            <div class="sliding-card">
+                <div class="card-main">
+                    <i class="fas fa-hard-hat" style="color: #ea580c;"></i>
+                    <h3>Wilric Services & Divers (Site Vitrine BTP)</h3>
+                    <p>Conception et création du site vitrine officiel de l'entreprise BTP & services (Février 2025).</p>
+                    <span class="hint">Voir le site →</span>
+                </div>
+                <div class="card-detail">
+                    <h4>Site Vitrine Wilric Services</h4>
+                    <ul>
+                        <li><i class="fas fa-calendar-alt"></i> Livré en Février 2025</li>
+                        <li><i class="fas fa-building"></i> Présentation BTP, Génie Civil & Prestations</li>
+                        <li><i class="fas fa-globe"></i> <a href="https://obiey-code.github.io/wilric-services/index.html" class="foncier-mvp-link" data-title="Wilric Services & Divers - Site Vitrine BTP">Aperçu dans l'interface</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- SECTION FONCIERCHAIN MVP -->
-        <h2 class="section-title" id="foncierchain">MVP FoncierChain (1er Prix MIABE 2026)</h2>
+        <!-- SECTION FONCIERCHAIN MVP & SITES VITRINES -->
+        <h2 class="section-title" id="foncierchain">Projets Web & Sites Vitrines Interactifs</h2>
         <p style="color: var(--text-light); margin-bottom: 25px;">
-            Découvrez les différentes applications et portails du projet <strong>FoncierChain</strong>. Cliquez sur un lien pour l'ouvrir directement dans l'interface intégrée du site sans redirection externe.
+            Découvrez les différentes applications et sites vitrines créés. Cliquez sur un lien pour ouvrir directement chaque site dans l'interface modale intégrée sans redirection externe.
         </p>
 
-        <!-- FONCIERCHAIN MVP CAROUSEL -->
+        <!-- FONCIERCHAIN & SITES VITRINES CAROUSEL -->
         <div class="carousel-container" id="foncierchain-carousel">
             <button class="carousel-btn carousel-btn-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
             <div class="carousel-track-wrapper">
                 <div class="carousel-track">
+
+                    <!-- WILRIC SERVICES & DIVERS (BTP - Février 2025) -->
+                    <div class="carousel-slide">
+                        <div class="mvp-card">
+                            <div class="mvp-card-header" style="background: linear-gradient(135deg, #ea580c, #c2410c);">
+                                <i class="fas fa-hard-hat" style="color: #ffedd5;"></i>
+                                <span class="badge-mvp">Site Vitrine BTP • Fév 2025</span>
+                            </div>
+                            <div class="mvp-card-body">
+                                <h3>Wilric Services & Divers</h3>
+                                <p>Site vitrine d'entreprise BTP, Génie Civil et prestations multi-services livré en Février 2025.</p>
+                                <a href="https://obiey-code.github.io/wilric-services/index.html" class="btn-mvp-action foncier-mvp-link" data-title="Wilric Services & Divers - Site Vitrine BTP (Février 2025)">
+                                    <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- MVP 1: Web App Vercel -->
                     <div class="carousel-slide">
@@ -964,8 +1003,8 @@
                                 <span class="badge-mvp">Web App</span>
                             </div>
                             <div class="mvp-card-body">
-                                <h3>Web App Vercel</h3>
-                                <p>Plateforme web de gestion foncière et cadastre sécurisé par Hyperledger Fabric.</p>
+                                <h3>FoncierChain Web App</h3>
+                                <p>Plateforme web de gestion foncière et cadastre sécurisé par Hyperledger Fabric (1er Prix MIABE 2026).</p>
                                 <a href="https://foncier-chain-web1.vercel.app/" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Web App Vercel">
                                     <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
                                 </a>
@@ -981,7 +1020,7 @@
                                 <span class="badge-mvp">Mobile Web</span>
                             </div>
                             <div class="mvp-card-body">
-                                <h3>Mobile Version Web</h3>
+                                <h3>FoncierChain Mobile Web</h3>
                                 <p>Interface mobile optimisée PWA pour la consultation des titres fonciers et transactions.</p>
                                 <a href="https://foncierchain.github.io/FoncierChain-Mobile1/" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Mobile Version Web">
                                     <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
@@ -998,7 +1037,7 @@
                                 <span class="badge-mvp">Android APK</span>
                             </div>
                             <div class="mvp-card-body">
-                                <h3>Application Android (APK)</h3>
+                                <h3>FoncierChain Android APK</h3>
                                 <p>Dossier officiel contenant l'application Android native téléchargeable et installable.</p>
                                 <a href="https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Application Android (APK)">
                                     <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
@@ -1007,7 +1046,7 @@
                         </div>
                     </div>
 
-                    <!-- MVP 4: Site Vitrine Projet -->
+                    <!-- MVP 4: Site Vitrine FoncierChain -->
                     <div class="carousel-slide">
                         <div class="mvp-card">
                             <div class="mvp-card-header" style="background: linear-gradient(135deg, #d97706, #b45309);">
@@ -1015,7 +1054,7 @@
                                 <span class="badge-mvp">Site Vitrine</span>
                             </div>
                             <div class="mvp-card-body">
-                                <h3>Site Vitrine Projet</h3>
+                                <h3>FoncierChain Site Vitrine</h3>
                                 <p>Portail de présentation officielle de la solution FoncierChain et documentation du projet.</p>
                                 <a href="https://foncierchain.github.io/FoncierChain/" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Site Vitrine Projet">
                                     <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
@@ -1319,7 +1358,8 @@
                 </div>
                 <div class="card-detail">
                     <h4>Missions effectuées</h4>
-                    <p>Conception et développement d'applications de gestion interne sur-mesure pour des entreprises du BTP et des services (web Angular & mobile Flutter).</p>
+                    <p>Conception et réalisation du site vitrine BTP officiel de Wilric Services & Divers en Février 2025 ainsi que des applications de gestion sur-mesure (Web Angular & Mobile Flutter).</p>
+                    <p style="margin-top: 10px;"><a href="https://obiey-code.github.io/wilric-services/index.html" class="foncier-mvp-link" data-title="Wilric Services & Divers - Site Vitrine BTP (Février 2025)" style="color: white; font-weight: bold; text-decoration: underline;"><i class="fas fa-window-restore"></i> Voir le site vitrine BTP</a></p>
                 </div>
             </div>
 
