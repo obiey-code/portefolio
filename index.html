@@ -520,12 +520,13 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        .video-card video {
+        .video-card video, .video-card img {
             width: 100%;
             height: auto;
             max-height: 220px;
             background: #0f172a;
             object-fit: contain;
+            display: block;
         }
 
         .video-card-body {
@@ -1234,10 +1235,10 @@
             <div class="carousel-indicators"></div>
         </div>
 
-        <!-- DEMOS VIDEO SIMULATION AGP -->
-        <h2 class="section-title" id="demos-agp">Démonstrations Vidéo AGP (iPhone & Mac)</h2>
+        <!-- DEMOS GIF SIMULATION AGP -->
+        <h2 class="section-title" id="demos-agp">Démonstrations Animées AGP (iPhone & Mac)</h2>
         <p style="color: var(--text-light); margin-bottom: 25px;">
-            Découvrez nos 5 vidéos de démonstration simulées (durée minimale de 2 minutes chacune avec narration vocale complète), présentant les parcours utilisateur mobile sur iPhone et l'administration web Angular sur Mac / macOS.
+            Découvrez nos 5 démonstrations animées au format GIF, présentant les parcours utilisateur mobile sur iPhone et l'administration web Angular sur Mac / macOS.
         </p>
 
         <!-- AGP VIDEOS CAROUSEL -->
@@ -1246,77 +1247,62 @@
             <div class="carousel-track-wrapper">
                 <div class="carousel-track">
 
-                    <!-- VIDEO 1 -->
+                    <!-- GIF 1 -->
                     <div class="carousel-slide">
                         <div class="video-card">
-                            <video controls preload="metadata">
-                                <source src="videos/agp_pay_mobile_inscription_passager.mp4" type="video/mp4">
-                                Votre navigateur ne supporte pas la lecture vidéo.
-                            </video>
+                            <img src="videos/agp_pay_mobile_inscription_passager.gif" alt="AGP Pay - Inscription & Activation Passager GIF" style="width: 100%; height: auto; max-height: 220px; object-fit: contain; background: #0f172a;">
                             <div class="video-card-body">
                                 <h3><i class="fas fa-mobile-screen-button" style="color: var(--primary);"></i> 1. AGP Pay — Inscription & Activation Passager</h3>
                                 <p>Simulation du parcours d'enregistrement usager, validation du numéro par SMS OTP, saisie d'immatriculation et génération du pass QR Code sur iPhone.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
+                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • Démo GIF</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- VIDEO 2 -->
+                    <!-- GIF 2 -->
                     <div class="carousel-slide">
                         <div class="video-card">
-                            <video controls preload="metadata">
-                                <source src="videos/agp_pay_mobile_recharge_paiement.mp4" type="video/mp4">
-                                Votre navigateur ne supporte pas la lecture vidéo.
-                            </video>
+                            <img src="videos/agp_pay_mobile_recharge_paiement.gif" alt="AGP Pay - Recharge & Paiement Péage GIF" style="width: 100%; height: auto; max-height: 220px; object-fit: contain; background: #0f172a;">
                             <div class="video-card-body">
                                 <h3><i class="fas fa-wallet" style="color: var(--primary);"></i> 2. AGP Pay — Recharge & Paiement Péage</h3>
                                 <p>Démonstration de la recharge de solde par Mobile Money (PayDunya / SankMoney) et passage automatique aux barrières par scan QR Code sur iPhone.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
+                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • Démo GIF</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- VIDEO 3 -->
+                    <!-- GIF 3 -->
                     <div class="carousel-slide">
                         <div class="video-card">
-                            <video controls preload="metadata">
-                                <source src="videos/agp_admin_web_dashboard_monitoring.mp4" type="video/mp4">
-                                Votre navigateur ne supporte pas la lecture vidéo.
-                            </video>
+                            <img src="videos/agp_admin_web_dashboard_monitoring.gif" alt="AGP Admin - Dashboard & Monitoring Web GIF" style="width: 100%; height: auto; max-height: 220px; object-fit: contain; background: #0f172a;">
                             <div class="video-card-body">
                                 <h3><i class="fas fa-desktop" style="color: var(--primary);"></i> 3. AGP Admin — Dashboard & Monitoring Web</h3>
                                 <p>Supervision globale du réseau national de péage sur portail web Angular : recettes en temps réel, volume de trafic et état de santé des voies sur Mac.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
+                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • Démo GIF</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- VIDEO 4 -->
+                    <!-- GIF 4 -->
                     <div class="carousel-slide">
                         <div class="video-card">
-                            <video controls preload="metadata">
-                                <source src="videos/agp_admin_web_gestion_postes_tarifs.mp4" type="video/mp4">
-                                Votre navigateur ne supporte pas la lecture vidéo.
-                            </video>
+                            <img src="videos/agp_admin_web_gestion_postes_tarifs.gif" alt="AGP Admin - Postes de Péage & Tarification GIF" style="width: 100%; height: auto; max-height: 220px; object-fit: contain; background: #0f172a;">
                             <div class="video-card-body">
                                 <h3><i class="fas fa-sliders" style="color: var(--primary);"></i> 4. AGP Admin — Postes de Péage & Tarification</h3>
                                 <p>Configuration des postes de péage, paramétrage des voies, définition des grilles tarifaires par catégorie de véhicule et gestion des abonnements sur Mac.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
+                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • Démo GIF</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- VIDEO 5 -->
+                    <!-- GIF 5 -->
                     <div class="carousel-slide">
                         <div class="video-card">
-                            <video controls preload="metadata">
-                                <source src="videos/agp_system_synchro_cloud_reporting.mp4" type="video/mp4">
-                                Votre navigateur ne supporte pas la lecture vidéo.
-                            </video>
+                            <img src="videos/agp_system_synchro_cloud_reporting.gif" alt="AGP System - DataSynchro & Reporting GIF" style="width: 100%; height: auto; max-height: 220px; object-fit: contain; background: #0f172a;">
                             <div class="video-card-body">
                                 <h3><i class="fas fa-cloud-arrow-up" style="color: var(--primary);"></i> 5. AGP System — DataSynchro & Reporting</h3>
                                 <p>Architecture de réplication DataSynchro entre les serveurs locaux et le Cloud VPS, gestion de l'autonomie hors-ligne et édition des audits comptables.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> Hybrid iPhone & Mac • 02:08 min</span>
+                                <span class="badge-device"><i class="fab fa-apple"></i> Hybrid iPhone & Mac • Démo GIF</span>
                             </div>
                         </div>
                     </div>

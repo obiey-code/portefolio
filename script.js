@@ -216,17 +216,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalBtnClose = document.getElementById('modal-btn-close');
     const modalBtnOpenAll = document.getElementById('modal-btn-open-all');
 
-    // Liste complète des liens MVP & Sites Vitrines pour le bouton "Tout ouvrir"
-    const foncierMvpUrls = [
-        { title: "Wilric Services & Divers - Site Vitrine BTP", url: "https://obiey-code.github.io/wilric-services/index.html" },
-        { title: "Web App Vercel", url: "https://foncier-chain-web1.vercel.app/" },
-        { title: "Mobile Version Web", url: "https://foncierchain.github.io/FoncierChain-Mobile1/" },
-        { title: "Application Android (APK)", url: "https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" },
-        { title: "Site Vitrine FoncierChain", url: "https://foncierchain.github.io/FoncierChain/" }
-    ];
+    let currentActiveUrl = '';
 
     function openModal(url, title) {
         if (!modalOverlay || !modalIframe) return;
+        currentActiveUrl = url;
         modalIframe.src = url;
         if (modalUrlTitle) {
             modalUrlTitle.textContent = title || "FoncierChain MVP";
@@ -275,12 +269,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Bouton "Tout ouvrir" (ouvre les 4 liens MVP dans de nouveaux onglets)
+    // Bouton "Tout ouvrir" (ouvre uniquement le lien du site indexé actuellement affiché)
     if (modalBtnOpenAll) {
         modalBtnOpenAll.addEventListener('click', () => {
-            foncierMvpUrls.forEach(item => {
-                window.open(item.url, '_blank');
-            });
+            if (currentActiveUrl) {
+                window.open(currentActiveUrl, '_blank');
+            } else if (modalIframe && modalIframe.src) {
+                window.open(modalIframe.src, '_blank');
+            }
         });
     }
 
