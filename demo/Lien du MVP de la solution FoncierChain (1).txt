@@ -1,0 +1,10 @@
+﻿Lien du MVP de l'application web : https://foncier-chain-web1.vercel.app/
+
+
+Lien du dossier drive contenant l'application mobile pour les appareils android: https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link
+
+
+Lien du MVP de l'application mobile version web: https://foncierchain.github.io/FoncierChain-Mobile1/
+
+
+Lien du site web : https://foncierchain.github.io/FoncierChain/
