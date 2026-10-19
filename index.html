@@ -18,6 +18,7 @@
             --card-bg: #ffffff;
             --text: #1e293b;
             --text-light: #64748b;
+            --coursly-orange: #ff6b00;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -191,6 +192,131 @@
         .card-detail ul { list-style: none; font-size: 0.9rem; }
         .card-detail ul li { margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
         .card-detail a { color: white; text-decoration: underline; font-weight: 600; }
+
+        /* COURSLY MOCKUPS GALLERY & DEMO SECTION */
+        .coursly-hero-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 35px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .coursly-hero-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #f97316;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .coursly-hero-banner p {
+            font-size: 1rem;
+            color: #cbd5e1;
+            max-width: 850px;
+            margin-bottom: 20px;
+        }
+
+        /* COURSLY MOCKUPS GRID */
+        .coursly-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .mockup-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+        }
+
+        .mockup-card-img-wrapper {
+            background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+        }
+
+        .mockup-card-img-wrapper.web-wrapper {
+            min-height: 280px;
+            padding: 15px;
+        }
+
+        .mockup-card-img-wrapper img {
+            max-width: 100%;
+            height: auto;
+            max-height: 360px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: transform 0.3s ease;
+        }
+
+        .mockup-card:hover .mockup-card-img-wrapper img {
+            transform: scale(1.03);
+        }
+
+        .mockup-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .mockup-card-body h4 {
+            font-size: 1.05rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mockup-card-body p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .badge-coursly-mobile {
+            background: #fff7ed;
+            color: #ea580c;
+            border: 1px solid #ffedd5;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            align-self: flex-start;
+        }
+
+        .badge-coursly-web {
+            background: #f0f9ff;
+            color: #0284c7;
+            border: 1px solid #e0f2fe;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            align-self: flex-start;
+        }
 
         /* VIDEO CARDS & PLAYER */
         .video-grid {
@@ -406,6 +532,7 @@
         <div class="container">
             <ul>
                 <li><a href="#realisations">Projets</a></li>
+                <li><a href="#demo-coursly">Démos Coursly</a></li>
                 <li><a href="#demos-agp">Démos AGP</a></li>
                 <li><a href="#experience">Parcours</a></li>
                 <li><a href="#acpe">Récépissé ACPE</a></li>
@@ -499,20 +626,160 @@
             <!-- COURSLY PNR -->
             <div class="sliding-card">
                 <div class="card-main">
-                    <i class="fas fa-truck-fast"></i>
-                    <h3>Coursly PNR (Plateforme de Livraison)</h3>
-                    <p>Moteur de dispatch avec géolocalisation, synchronisation temps réel et repli SMS en cas de panne réseau.</p>
-                    <span class="hint">Voir l'architecture →</span>
+                    <i class="fas fa-truck-fast" style="color: #ff6b00;"></i>
+                    <h3>Coursly (Plateforme de Livraison Multi-Acteurs)</h3>
+                    <p>Écosystème complet : App Mobile iPhone usagers/coursiers & Portail Web Mac pour Partenaires & Administrateurs.</p>
+                    <span class="hint">Découvrir la démo ci-dessous ↓</span>
                 </div>
                 <div class="card-detail">
-                    <h4>Spécifications Techniques</h4>
+                    <h4>Spécifications Techniques Coursly</h4>
                     <ul>
-                        <li><i class="fas fa-map-location-dot"></i> Suivi GPS & Dispatching intelligent</li>
-                        <li><i class="fas fa-comment-sms"></i> Repli SMS automatique hors-ligne</li>
-                        <li><i class="fas fa-database"></i> Backend Python & Base PostgreSQL</li>
+                        <li><i class="fas fa-mobile-screen"></i> Interface Mobile Responsive & Géolocalisation</li>
+                        <li><i class="fas fa-wallet"></i> Portefeuille Virtuel Client & Encaissement Coursier</li>
+                        <li><i class="fas fa-map-location-dot"></i> Navigation GPS temps réel & Cockpit Coursier</li>
+                        <li><i class="fas fa-store"></i> Portail Partenaire & Gestion de Rôles Staff</li>
                     </ul>
                 </div>
             </div>
+        </div>
+
+        <!-- DEMO COURSLY - MOCKUPS IPHONE & MAC -->
+        <h2 class="section-title" id="demo-coursly">Démonstrations & Mockups - Coursly</h2>
+
+        <div class="coursly-hero-banner">
+            <h3><i class="fas fa-box-open"></i> Coursly — Écosystème Mobile (iPhone) & Web (Mac / macOS)</h3>
+            <p>
+                Retrouvez l'analyse visuelle et la démonstration complète de la solution <strong>Coursly</strong>. Les captures d'écran mobiles sont intégrées dans un mockup d'iPhone 15 Pro et les captures de gestion Web dans un mockup MacBook Pro macOS.
+            </p>
+        </div>
+
+        <!-- VIDEO COURSLY DEMO -->
+        <div style="margin-bottom: 40px;">
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/coursly_demo.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <div class="video-card-body">
+                    <h3><i class="fas fa-circle-play" style="color: #ff6b00;"></i> Démo Vidéo Interactive Coursly (iPhone & Mac)</h3>
+                    <p>Présentation animée des modules usager client, espace portefeuille, cockpit coursier avec GPS, portail de gestion partenaires et hub d'administration des rôles.</p>
+                    <span class="badge-device" style="background: #fff7ed; color: #ea580c;"><i class="fab fa-apple"></i> Mobile iPhone & Mac macOS Mockups</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOCKUPS GRID COURSLY -->
+        <h3 style="font-size: 1.3rem; color: var(--secondary); margin-bottom: 20px;"><i class="fas fa-mobile-alt" style="color: #ff6b00;"></i> Screenshots Framés iPhone & Mac</h3>
+        <div class="coursly-grid">
+
+            <!-- 1. Splash Screen -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_splash_chargement_iphone.png" alt="Coursly Mobile Splash Screen iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-sparkles" style="color: #f59e0b;"></i> 1. Ecran d'Accueil & Splash Screen</h4>
+                    <p>Ecran d'initialisation de l'application Coursly avec chargement sécurisé et identité visuelle dynamique.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 2. Marketplace & Categories -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_marketplace_categories_iphone.png" alt="Coursly Mobile Marketplace iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-store" style="color: #ff6b00;"></i> 2. Marketplace & Catégories</h4>
+                    <p>Exploration des catégories de services : Restaurants, Supermarchés, Boutiques, Colis & Services sur-mesure.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 3. Actions Rapides Client -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_client_actions_iphone.png" alt="Coursly Client Actions iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-list-check" style="color: #3b82f6;"></i> 3. Actions Client & Suivi</h4>
+                    <p>Raccourcis intelligents pour la demande de coursier express, commande de repas et historique d'expéditions.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 4. Portefeuille Client -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_client_portefeuille_iphone.png" alt="Coursly Portefeuille Client iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-wallet" style="color: #10b981;"></i> 4. Portefeuille Virtuel & Solde</h4>
+                    <p>Gestion des crédits clients, rechargement Mobile Money, virement, retrait et traçabilité des opérations.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 5. Visiteur & Outils Publics -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_visiteur_outils_iphone.png" alt="Coursly Outils Publics iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-screwdriver-wrench" style="color: #8b5cf6;"></i> 5. Services & Outils Publics</h4>
+                    <p>Outils d'estimation tarifaire, suivi de colis anonyme et support client accessible dès la page d'entrée.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 6. Cockpit Coursier -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_coursier_cockpit_iphone.png" alt="Coursly Cockpit Coursier iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-motorcycle" style="color: #ef4444;"></i> 6. Cockpit Coursier & Relevé de Gains</h4>
+                    <p>Espace chauffeur/coursier : activation de disponibilité, solde des commissions et attribution des missions.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 7. Navigation GPS Coursier -->
+            <div class="mockup-card">
+                <div class="mockup-card-img-wrapper">
+                    <img src="images/coursly_framed/coursly_mobile_coursier_navigation_gps_iphone.png" alt="Coursly Navigation GPS iPhone">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-location-arrow" style="color: #06b6d4;"></i> 7. Navigation GPS & Livraisons</h4>
+                    <p>Guidage routier temps réel pour les coursiers, optimisation de la feuille de route et preuve de livraison.</p>
+                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                </div>
+            </div>
+
+            <!-- 8. Portail Partenaire Web (Mac) -->
+            <div class="mockup-card" style="grid-column: span 1;">
+                <div class="mockup-card-img-wrapper web-wrapper">
+                    <img src="images/coursly_framed/coursly_web_partenaire_catalogue_mac.png" alt="Coursly Partenaire Web Mac">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-laptop" style="color: #0284c7;"></i> 8. Portail Web Partenaire — Catalogue</h4>
+                    <p>Interface marchand Web sur Mac pour la publication d'articles, la mise à jour des stocks et des tarifs.</p>
+                    <span class="badge-coursly-web"><i class="fab fa-apple"></i> macOS • MacBook Pro Web</span>
+                </div>
+            </div>
+
+            <!-- 9. Admin Hub Rôles Web (Mac) -->
+            <div class="mockup-card" style="grid-column: span 1;">
+                <div class="mockup-card-img-wrapper web-wrapper">
+                    <img src="images/coursly_framed/coursly_web_admin_roles_permissions_mac.png" alt="Coursly Admin Hub Web Mac">
+                </div>
+                <div class="mockup-card-body">
+                    <h4><i class="fas fa-user-shield" style="color: #6366f1;"></i> 9. Hub Administrateur — Rôles & Staff</h4>
+                    <p>Panneau d'administration centralisé pour la distribution des rôles, permissions et supervision des accès.</p>
+                    <span class="badge-coursly-web"><i class="fab fa-apple"></i> macOS • MacBook Pro Web</span>
+                </div>
+            </div>
+
         </div>
 
         <!-- DEMOS VIDEO SIMULATION AGP -->
@@ -747,5 +1014,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
