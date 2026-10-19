@@ -43,7 +43,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        nav ul { display: flex; justify-content: center; list-style: none; gap: 25px; }
+        nav ul { display: flex; justify-content: center; list-style: none; gap: 20px; flex-wrap: wrap; }
         nav a { color: white; text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         nav a:hover { color: var(--accent); }
 
@@ -69,6 +69,42 @@
 
         .hero h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 700; letter-spacing: -1px; }
         .hero p { font-size: 1.1rem; opacity: 0.9; font-weight: 300; }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn-doc {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        .btn-doc:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-doc-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .btn-doc-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
         /* WHATSAPP FLOAT */
         .whatsapp-float {
@@ -155,6 +191,116 @@
         .card-detail ul { list-style: none; font-size: 0.9rem; }
         .card-detail ul li { margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px; }
         .card-detail a { color: white; text-decoration: underline; font-weight: 600; }
+
+        /* VIDEO CARDS & PLAYER */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid #edf2f7;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: auto;
+            max-height: 220px;
+            background: #0f172a;
+            object-fit: contain;
+        }
+
+        .video-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .video-card-body h3 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-card-body p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .badge-device {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: #eff6ff;
+            color: var(--primary);
+            align-self: flex-start;
+        }
+
+        /* ACPE VERIFICATION CARD */
+        .acpe-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .acpe-qr {
+            width: 130px;
+            height: 130px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            padding: 5px;
+            background: white;
+        }
+
+        .acpe-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .acpe-info h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .acpe-info p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
 
         /* SKILLS & CERTIFICATIONS DISPLAY */
         .skill-box {
@@ -246,12 +392,13 @@
             .card-detail { left: 0; top: 100%; }
             .sliding-card:hover .card-detail { top: 0; left: 0; }
             .contact-section { padding: 30px 20px; }
+            .acpe-card { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/242066130118" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/242066130118" class="whatsapp-float" target="_blank" title="Discuter sur WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -259,7 +406,9 @@
         <div class="container">
             <ul>
                 <li><a href="#realisations">Projets</a></li>
+                <li><a href="#demos-agp">Démos AGP</a></li>
                 <li><a href="#experience">Parcours</a></li>
+                <li><a href="#acpe">Récépissé ACPE</a></li>
                 <li><a href="#competences">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -270,82 +419,207 @@
         <div class="container">
             <img src="images/1000012236-removebg-preview.png" alt="Christ Dany OBIEY" class="profile-img">
             <h1>Christ Dany OBIEY</h1>
-            <p>Développeur Fullstack (Mobile & Web) | Administrateur Systèmes & Réseaux</p>
-            <p style="font-size: 0.9rem; margin-top: 15px; color: var(--accent);">
-                <i class="fas fa-map-marker-alt"></i> Pointe-Noire, Congo &nbsp; | &nbsp; <i class="fas fa-phone"></i> +242 06 613 01 18
+            <p>Développeur Informatique Full Stack & Systèmes | Titulaire d'une Licence Pro Systèmes & Réseaux</p>
+            <p style="font-size: 0.9rem; margin-top: 12px; color: var(--accent);">
+                <i class="fas fa-map-marker-alt"></i> Pointe-Noire & Brazzaville, Congo &nbsp; | &nbsp; <i class="fas fa-phone"></i> +242 06 613 01 18 &nbsp; | &nbsp; <i class="fas fa-envelope"></i> obieydany@gmail.com
             </p>
+
+            <div class="hero-buttons">
+                <a href="demo/Cv obiey dany.pdf" target="_blank" class="btn-doc">
+                    <i class="fas fa-file-pdf"></i> VOIR CV
+                </a>
+                <a href="demo/Recepisse_ACPE_OBIEY_Christ_Dany.pdf" target="_blank" class="btn-doc btn-doc-secondary">
+                    <i class="fas fa-certificate"></i> VOIR RÉCÉPISSÉ ACPE
+                </a>
+            </div>
         </div>
     </header>
 
     <main class="container">
 
-        <h2 class="section-title" id="realisations">Réalisations Clés</h2>
+        <!-- PROJETS & RÉALISATIONS -->
+        <h2 class="section-title" id="realisations">Projets & Réalisations Phares</h2>
         <div class="grid-pro">
+            <!-- MIABE HACKATHON FONCIERCHAIN -->
             <div class="sliding-card">
                 <div class="card-main">
-                    <i class="fas fa-mobile-screen-button"></i>
-                    <h3>Applications Mobiles Flutter</h3>
-                    <p>Développement cross-platform performant pour iOS et Android.</p>
-                    <span class="hint">Voir les technos →</span>
+                    <i class="fas fa-award" style="color: #f59e0b;"></i>
+                    <h3>FoncierChain (1er Prix MIABE 2026)</h3>
+                    <p>Plateforme décentralisée de gestion foncière sécurisée par Blockchain Hyperledger Fabric.</p>
+                    <span class="hint">Voir les liens MVP →</span>
                 </div>
                 <div class="card-detail">
-                    <h4>Tech Stack</h4>
+                    <h4>Liens MVP FoncierChain</h4>
                     <ul>
-                        <li><i class="fas fa-code"></i> Flutter & Dart</li>
-                        <li><i class="fas fa-plug"></i> Intégration API REST</li>
-                        <li><i class="fas fa-database"></i> State Management (Provider/Riverpod)</li>
+                        <li><i class="fas fa-globe"></i> <a href="https://foncier-chain-web1.vercel.app/" target="_blank">Web App Vercel</a></li>
+                        <li><i class="fas fa-mobile-alt"></i> <a href="https://foncierchain.github.io/FoncierChain-Mobile1/" target="_blank">Mobile Version Web</a></li>
+                        <li><i class="fab fa-android"></i> <a href="https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" target="_blank">Application Android (APK)</a></li>
+                        <li><i class="fas fa-laptop-code"></i> <a href="https://foncierchain.github.io/FoncierChain/" target="_blank">Site Vitrine Projet</a></li>
                     </ul>
                 </div>
             </div>
 
+            <!-- PLATEFORME AGP PAY -->
             <div class="sliding-card">
                 <div class="card-main">
-                    <i class="fas fa-server"></i>
-                    <h3>Backend Django REST</h3>
-                    <p>Architectures robustes et sécurisées pour APIs complexes.</p>
+                    <i class="fas fa-road"></i>
+                    <h3>Plateforme AGP Pay (Péage Intelligent)</h3>
+                    <p>Architecture multi-sites de péage : API Django REST, Web Angular, Mobile Flutter, PayDunya & SankMoney.</p>
                     <span class="hint">Voir les technos →</span>
                 </div>
                 <div class="card-detail">
-                    <h4>Détails Projet</h4>
+                    <h4>Détails AGP Pay</h4>
                     <ul>
-                        <li><i class="fas fa-check"></i> Django REST Framework</li>
-                        <li><i class="fas fa-shield-halved"></i> Authentification JWT</li>
-                        <li><i class="fas fa-box"></i> Déploiement Docker & VPS</li>
+                        <li><i class="fas fa-code"></i> Django REST Framework & JWT</li>
+                        <li><i class="fas fa-mobile"></i> Application Mobile Flutter</li>
+                        <li><i class="fas fa-wallet"></i> Webhooks PayDunya & SankMoney</li>
+                        <li><i class="fas fa-server"></i> Déploiement VPS & Docker</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- AGP ADMIN WEB -->
             <div class="sliding-card">
                 <div class="card-main">
                     <i class="fab fa-angular"></i>
-                    <h3>Web Apps Angular</h3>
-                    <p>Interfaces d'administration et plateformes SaaS réactives.</p>
-                    <span class="hint">Voir les technos →</span>
+                    <h3>AGP Admin (Portail Web Multi-Sites)</h3>
+                    <p>Gestion nationale du péage, supervision en temps réel, DataSynchro cloud & reporting comptable.</p>
+                    <span class="hint">Voir la solution →</span>
                 </div>
                 <div class="card-detail">
-                    <h4>Fonctionnalités</h4>
+                    <h4>Fonctionnalités Admin</h4>
                     <ul>
-                        <li><i class="fas fa-layer-group"></i> Architecture modulaire</li>
-                        <li><i class="fas fa-bolt"></i> TypeScript & RxJS</li>
-                        <li><i class="fas fa-code-merge"></i> Versioning Git/GitHub</li>
+                        <li><i class="fas fa-chart-line"></i> Dashboard & Analytics en temps réel</li>
+                        <li><i class="fas fa-arrows-rotate"></i> Synchronisation DataSynchro Local/Cloud</li>
+                        <li><i class="fas fa-shield-halved"></i> Contrôle d'accès Rôles JWT</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- COURSLY PNR -->
+            <div class="sliding-card">
+                <div class="card-main">
+                    <i class="fas fa-truck-fast"></i>
+                    <h3>Coursly PNR (Plateforme de Livraison)</h3>
+                    <p>Moteur de dispatch avec géolocalisation, synchronisation temps réel et repli SMS en cas de panne réseau.</p>
+                    <span class="hint">Voir l'architecture →</span>
+                </div>
+                <div class="card-detail">
+                    <h4>Spécifications Techniques</h4>
+                    <ul>
+                        <li><i class="fas fa-map-location-dot"></i> Suivi GPS & Dispatching intelligent</li>
+                        <li><i class="fas fa-comment-sms"></i> Repli SMS automatique hors-ligne</li>
+                        <li><i class="fas fa-database"></i> Backend Python & Base PostgreSQL</li>
                     </ul>
                 </div>
             </div>
         </div>
 
+        <!-- DEMOS VIDEO SIMULATION AGP -->
+        <h2 class="section-title" id="demos-agp">Démonstrations Vidéo AGP (iPhone & Mac)</h2>
+        <p style="color: var(--text-light); margin-bottom: 25px;">
+            Découvrez nos 5 vidéos de démonstration simulées (durée minimale de 2 minutes chacune avec narration vocale complète), présentant les parcours utilisateur mobile sur iPhone et l'administration web Angular sur Mac / macOS.
+        </p>
+
+        <div class="video-grid">
+            <!-- VIDEO 1 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/agp_pay_mobile_inscription_passager.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <div class="video-card-body">
+                    <h3><i class="fas fa-mobile-screen-button" style="color: var(--primary);"></i> 1. AGP Pay — Inscription & Activation Passager</h3>
+                    <p>Simulation du parcours d'enregistrement usager, validation du numéro par SMS OTP, saisie d'immatriculation et génération du pass QR Code sur iPhone.</p>
+                    <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
+                </div>
+            </div>
+
+            <!-- VIDEO 2 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/agp_pay_mobile_recharge_paiement.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <div class="video-card-body">
+                    <h3><i class="fas fa-wallet" style="color: var(--primary);"></i> 2. AGP Pay — Recharge & Paiement Péage</h3>
+                    <p>Démonstration de la recharge de solde par Mobile Money (PayDunya / SankMoney) et passage automatique aux barrières par scan QR Code sur iPhone.</p>
+                    <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
+                </div>
+            </div>
+
+            <!-- VIDEO 3 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/agp_admin_web_dashboard_monitoring.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <div class="video-card-body">
+                    <h3><i class="fas fa-desktop" style="color: var(--primary);"></i> 3. AGP Admin — Dashboard & Monitoring Web</h3>
+                    <p>Supervision globale du réseau national de péage sur portail web Angular : recettes en temps réel, volume de trafic et état de santé des voies sur Mac.</p>
+                    <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
+                </div>
+            </div>
+
+            <!-- VIDEO 4 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/agp_admin_web_gestion_postes_tarifs.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <div class="video-card-body">
+                    <h3><i class="fas fa-sliders" style="color: var(--primary);"></i> 4. AGP Admin — Postes de Péage & Tarification</h3>
+                    <p>Configuration des postes de péage, paramétrage des voies, définition des grilles tarifaires par catégorie de véhicule et gestion des abonnements sur Mac.</p>
+                    <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
+                </div>
+            </div>
+
+            <!-- VIDEO 5 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/agp_system_synchro_cloud_reporting.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                <div class="video-card-body">
+                    <h3><i class="fas fa-cloud-arrow-up" style="color: var(--primary);"></i> 5. AGP System — DataSynchro & Reporting</h3>
+                    <p>Architecture de réplication DataSynchro entre les serveurs locaux et le Cloud VPS, gestion de l'autonomie hors-ligne et édition des audits comptables.</p>
+                    <span class="badge-device"><i class="fab fa-apple"></i> Hybrid iPhone & Mac • 02:08 min</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPERIENCES PROFESSIONNELLES -->
         <h2 class="section-title" id="experience">Expérience Professionnelle</h2>
         <div class="grid-pro">
             <div class="sliding-card">
                 <div class="card-main">
-                    <i class="fas fa-code-branch"></i>
-                    <h3>NOISIM ENGINEERING</h3>
-                    <p>Développeur Fullstack (Django/Angular/Flutter)</p>
-                    <small>Nov 2025 - Présent</small>
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>NOISIM ENGINEERING SERVICES</h3>
+                    <p>Développeur Logiciel Full Stack & Architecte Solutions</p>
+                    <small>11/2025 – 10/2026 (11 mois) · Pointe-Noire</small>
                     <span class="hint">Missions →</span>
                 </div>
                 <div class="card-detail">
-                    <h4>Responsabilités</h4>
-                    <p>Conception d'APIs avec Django REST Framework, développement d'interfaces web Angular et applications mobiles Flutter. Gestion du cycle de vie avec Git.</p>
+                    <h4>Réalisations majeures</h4>
+                    <ul>
+                        <li>• <strong>Plateforme AGP Pay (Toll System)</strong> : architecture multi-sites (Django REST, Web Angular, Mobile Flutter).</li>
+                        <li>• <strong>Intégration monétique</strong> : PayDunya, SankMoney & webhooks sécurisés.</li>
+                        <li>• <strong>DevOps VPS</strong> : Nginx, Supervisor, Gunicorn, SSL, Docker Compose.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sliding-card">
+                <div class="card-main">
+                    <i class="fas fa-building"></i>
+                    <h3>WILRIC SERVICES & GLOBAL GROUPE</h3>
+                    <p>Développeur Web & Mobile</p>
+                    <small>01/2025 – 12/2025 (1 an) · Pointe-Noire</small>
+                    <span class="hint">Missions →</span>
+                </div>
+                <div class="card-detail">
+                    <h4>Missions effectuées</h4>
+                    <p>Conception et développement d'applications de gestion interne sur-mesure pour des entreprises du BTP et des services (web Angular & mobile Flutter).</p>
                 </div>
             </div>
 
@@ -353,96 +627,89 @@
                 <div class="card-main">
                     <i class="fas fa-network-wired"></i>
                     <h3>AIRTEL CONGO B</h3>
-                    <p>Parcours de 5 ans (2018-2025)</p>
-                    <small>Expertise Commerciale & Technique</small>
+                    <p>Parcours Professionnel de 5 ans (2018 - 2025)</p>
+                    <small>Commercial Certifié KYC & Chef d'Équipe</small>
                     <span class="hint">Évolution →</span>
                 </div>
                 <div class="card-detail">
                     <h4>Postes occupés</h4>
                     <ul>
                         <li>• 2025 : Commercial Certifié KYC</li>
-                        <li>• 2022-25 : Chef d'équipe AJB</li>
-                        <li>• 2018-22 : Brand Ambassadeur & FL</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="sliding-card">
-                <div class="card-main">
-                    <i class="fas fa-user-shield"></i>
-                    <h3>Freelance / Indépendant</h3>
-                    <p>Consultant Digital & Dev</p>
-                    <small>Février 2025 - Présent</small>
-                    <span class="hint">Services →</span>
-                </div>
-                <div class="card-detail">
-                    <h4>Expertise</h4>
-                    <ul>
-                        <li>• Développement d'APIs sur mesure</li>
-                        <li>• Intégration continue (GitHub Actions)</li>
-                        <li>• Administration de serveurs VPS/Docker</li>
+                        <li>• 2022-2025 : Chef d'équipe AJB</li>
+                        <li>• 2018-2022 : Brand Ambassadeur & FL</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+        <!-- CERTIFICATION ACPE & FORMATIONS -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 40px;">
             <div>
-                <h2 class="section-title" id="formation">Formation & Certifs</h2>
+                <h2 class="section-title" id="acpe">Inscripton ACPE Vérifiée</h2>
+                <div class="acpe-card">
+                    <img src="images/qr_acpe.png" alt="QR Code ACPE" class="acpe-qr">
+                    <div class="acpe-info">
+                        <h3><i class="fas fa-user-check" style="color: var(--whatsapp);"></i> Récépissé ACPE Officiel</h3>
+                        <p>Inscrit à l'Agence Congolaise Pour l'Emploi (ACPE) en tant que <strong>Développeur Full Stack Mobile / Technicien</strong>.</p>
+                        <a href="https://www.acpe.cg/verification/recepisse/83328?signature=b03ce443944311bbc0200f51eaac260982194aff3c54fc4862acd585ef60eac7" target="_blank" class="cert-link">
+                            <i class="fas fa-qrcode"></i> Vérifier le Récépissé en Ligne (ACPE.cg)
+                        </a>
+                    </div>
+                </div>
+
+                <h2 class="section-title" id="formation">Formation & Diplômes</h2>
                 
                 <div class="skill-box" style="margin-bottom: 25px;">
                     <h3 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 10px;"><i class="fas fa-graduation-cap"></i> Université ESTAM</h3>
                     <p><strong>Licence Professionnelle (2020 - 2025)</strong></p>
-                    <p style="color: var(--text-light); font-size: 0.9rem;">Systèmes et Réseaux Informatiques. Spécialisation en architecture logicielle et cloud.</p>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Systèmes et Réseaux Informatiques. Spécialisation en architecture logicielle, cloud et administration systèmes.</p>
                 </div>
 
                 <div class="skill-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 20px;"><i class="fas fa-certificate" style="color: #f59e0b;"></i> Certifications & Hackathons</h3>
-                    
-                    <div class="cert-list">
-                        <div class="cert-item">
-                            <h4>OCÉANE HACKATHON</h4>
-                            <p>Campus mondial de la mer • oct. 2025</p>
-                            <span style="font-size: 0.8rem; color: var(--whatsapp); font-weight: bold;"><i class="fas fa-award"></i> Lauréat (Développement Solution)</span>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>WordPress Pro / Google Cloud</h4>
-                            <p>Certifié Coursera • 2025</p>
-                            <a href="https://coursera.org/verify/D94TLCHD08FE" target="_blank" class="cert-link">Voir la certification</a>
-                        </div>
-                    </div>
+                    <h3 style="color: var(--primary); font-size: 1.1rem; margin-bottom: 10px;"><i class="fas fa-school"></i> Lycée A. H. PAKA</h3>
+                    <p><strong>Baccalauréat C (Scientifique) — 2019 - 2020</strong></p>
                 </div>
             </div>
 
             <div>
                 <h2 class="section-title" id="competences">Compétences Techniques</h2>
                 <div class="skill-box">
-                    <h4 style="margin-bottom: 15px;"><i class="fas fa-mobile-alt"></i> Mobile & Frontend</h4>
-                    <span class="skill-tag">Flutter / Dart</span>
-                    <span class="skill-tag">Angular</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">Bootstrap 5</span>
-                    
-                    <h4 style="margin: 20px 0 15px;"><i class="fas fa-gears"></i> Backend & API</h4>
-                    <span class="skill-tag">Django REST Framework</span>
+                    <h4 style="margin-bottom: 15px;"><i class="fas fa-gears"></i> Backend & Monétique</h4>
                     <span class="skill-tag">Python</span>
-                    <span class="skill-tag">API RESTful</span>
-                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Django REST Framework</span>
+                    <span class="skill-tag">API REST</span>
+                    <span class="skill-tag">JWT</span>
+                    <span class="skill-tag">PayDunya</span>
+                    <span class="skill-tag">SankMoney</span>
+
+                    <h4 style="margin: 20px 0 15px;"><i class="fas fa-mobile-alt"></i> Frontend, Mobile & Blockchain</h4>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Flutter / Dart</span>
+                    <span class="skill-tag">Hyperledger Fabric</span>
                     
-                    <h4 style="margin: 20px 0 15px;"><i class="fas fa-terminal"></i> DevOps & Outils</h4>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">GitHub</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">VPS Linux</span>
+                    <h4 style="margin: 20px 0 15px;"><i class="fas fa-database"></i> Bases de Données</h4>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MariaDB</span>
+                    
+                    <h4 style="margin: 20px 0 15px;"><i class="fas fa-server"></i> DevOps, Systèmes & Réseaux</h4>
+                    <span class="skill-tag">GNU/Linux</span>
+                    <span class="skill-tag">Docker Compose</span>
+                    <span class="skill-tag">Nginx</span>
+                    <span class="skill-tag">Supervisor</span>
+                    <span class="skill-tag">Gunicorn</span>
+                    <span class="skill-tag">Git / CI-CD</span>
                 </div>
             </div>
         </div>
 
+        <!-- CONTACT SECTION -->
         <h2 class="section-title" id="contact">Discutons de votre projet</h2>
         <div class="contact-section">
             <a href="https://wa.me/242066130118" class="btn-whatsapp-large" target="_blank">
-                <i class="fab fa-whatsapp"></i> Me contacter sur WhatsApp
+                <i class="fab fa-whatsapp"></i> Me contacter sur WhatsApp (+242 06 613 01 18)
             </a>
 
             <form action="mailto:obieydany@gmail.com" method="post" enctype="text/plain">
@@ -456,7 +723,7 @@
                 </div>
                 <div class="form-group">
                     <label>Détails du projet</label>
-                    <textarea name="message" rows="5" required placeholder="Décrivez votre besoin (App mobile, Site web, API...)"></textarea>
+                    <textarea name="message" rows="5" required placeholder="Décrivez votre besoin (App mobile Flutter, API Django, Web Angular, Monétique...)"></textarea>
                 </div>
                 <button type="submit" class="btn-submit">Envoyer l'Email</button>
             </form>
@@ -467,7 +734,7 @@
     <footer>
         <div class="container">
             <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: 10px;">Christ Dany OBIEY</p>
-            <p style="opacity: 0.7; margin-bottom: 30px;">Expert Flutter, Angular & Django REST</p>
+            <p style="opacity: 0.7; margin-bottom: 30px;">Développeur Full Stack & Systèmes | Django, Angular, Flutter, DevOps</p>
             
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/obiey" target="_blank"><i class="fab fa-linkedin"></i></a>
