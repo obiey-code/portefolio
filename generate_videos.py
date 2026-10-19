@@ -120,17 +120,13 @@ def create_mac_mockup(screen_path, width=1280, height=720, title="AGP Admin Web 
     bg.paste(screen_resized, (win_x + 2, win_y + bar_h))
     return bg
 
-# Helper to generate TTS audio and build video clip sequence
-def build_narrated_video(segments, output_path):
+# Helper to build silent animated GIF clip sequence without voice audio
+def build_agp_gif(segments, output_path):
     clips = []
 
-    for idx, (text_fr, ftype, img_path, min_dur, sub) in enumerate(segments):
-        audio_file = f"temp_audio/{os.path.basename(output_path)}_{idx}.mp3"
-        tts = gTTS(text=text_fr, lang='fr')
-        tts.save(audio_file)
-
-        audio_clip = mp.AudioFileClip(audio_file)
-        actual_duration = max(min_dur, audio_clip.duration + 0.8)
+    for idx, (text_fr, ftype, img_path, dur, sub) in enumerate(segments):
+        # 2.5 seconds display per slide for GIF smooth presentation
+        segment_duration = 2.5
 
         if ftype == 'iphone':
             pil_img = create_iphone_mockup(img_path, title=f"Étape {idx+1}/{len(segments)}", subtitle=sub)
@@ -140,13 +136,12 @@ def build_narrated_video(segments, output_path):
         temp_frame_path = f"temp_audio/frame_{os.path.basename(output_path)}_{idx}.png"
         pil_img.save(temp_frame_path)
 
-        image_clip = mp.ImageClip(temp_frame_path).with_duration(actual_duration)
-        image_clip = image_clip.with_audio(audio_clip)
+        image_clip = mp.ImageClip(temp_frame_path).with_duration(segment_duration)
         clips.append(image_clip)
 
     final_video = mp.concatenate_videoclips(clips, method="compose")
-    print(f"Generating {output_path}... Total duration: {final_video.duration:.2f}s (Min target: 120s)")
-    final_video.write_videofile(output_path, fps=15, codec='libx264', audio_codec='aac', bitrate="800k")
+    print(f"Generating GIF {output_path}... Total duration: {final_video.duration:.2f}s")
+    final_video.write_gif(output_path, fps=10)
 
 
 # 1. VIDEO 1: AGP Pay Mobile - Inscription et Activation (iPhone)
@@ -202,10 +197,10 @@ video5_segments = [
 ]
 
 if __name__ == "__main__":
-    print("=== STARTING VIDEO GENERATION ===")
-    build_narrated_video(video1_segments, 'videos/agp_pay_mobile_inscription_passager.mp4')
-    build_narrated_video(video2_segments, 'videos/agp_pay_mobile_recharge_paiement.mp4')
-    build_narrated_video(video3_segments, 'videos/agp_admin_web_dashboard_monitoring.mp4')
-    build_narrated_video(video4_segments, 'videos/agp_admin_web_gestion_postes_tarifs.mp4')
-    build_narrated_video(video5_segments, 'videos/agp_system_synchro_cloud_reporting.mp4')
-    print("=== ALL 5 VIDEOS GENERATED SUCCESSFULLY! ===")
+    print("=== STARTING AGP GIF GENERATION ===")
+    build_agp_gif(video1_segments, 'videos/agp_pay_mobile_inscription_passager.gif')
+    build_agp_gif(video2_segments, 'videos/agp_pay_mobile_recharge_paiement.gif')
+    build_agp_gif(video3_segments, 'videos/agp_admin_web_dashboard_monitoring.gif')
+    build_agp_gif(video4_segments, 'videos/agp_admin_web_gestion_postes_tarifs.gif')
+    build_agp_gif(video5_segments, 'videos/agp_system_synchro_cloud_reporting.gif')
+    print("=== ALL 5 AGP GIFS GENERATED SUCCESSFULLY! ===")
