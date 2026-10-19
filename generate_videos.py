@@ -1,7 +1,6 @@
 import os
 import glob
 from PIL import Image, ImageDraw, ImageFont
-from gtts import gTTS
 import moviepy as mp
 
 os.makedirs('videos', exist_ok=True)
@@ -120,14 +119,13 @@ def create_mac_mockup(screen_path, width=1280, height=720, title="AGP Admin Web 
     bg.paste(screen_resized, (win_x + 2, win_y + bar_h))
     return bg
 
-# Helper to build silent animated GIF clip sequence without voice audio
-def build_agp_gif(segments, output_path):
+# Helper to build silent animated MP4 clip sequence without voice audio (Duration >= 15 seconds)
+def build_agp_video(segments, output_path):
     clips = []
+    # Ensure total duration is at least 15 seconds (e.g., 15.0 to 18.0 seconds)
+    segment_duration = max(2.5, 15.0 / len(segments))
 
     for idx, (text_fr, ftype, img_path, dur, sub) in enumerate(segments):
-        # 2.5 seconds display per slide for GIF smooth presentation
-        segment_duration = 2.5
-
         if ftype == 'iphone':
             pil_img = create_iphone_mockup(img_path, title=f"Étape {idx+1}/{len(segments)}", subtitle=sub)
         else:
@@ -140,67 +138,67 @@ def build_agp_gif(segments, output_path):
         clips.append(image_clip)
 
     final_video = mp.concatenate_videoclips(clips, method="compose")
-    print(f"Generating GIF {output_path}... Total duration: {final_video.duration:.2f}s")
-    final_video.write_gif(output_path, fps=10)
+    print(f"Generating MP4 {output_path}... Total duration: {final_video.duration:.2f}s")
+    final_video.write_videofile(output_path, fps=15, codec="libx264", audio=False)
 
 
 # 1. VIDEO 1: AGP Pay Mobile - Inscription et Activation (iPhone)
 video1_segments = [
-    ("Bienvenue dans la démonstration de l'application mobile AGP Pay sur iPhone. Ce premier module présente le parcours complet d'inscription et d'activation de compte pour les usagers du réseau national de péage.", 'iphone', 'extracted_img/pay_p5_img1.jpeg', 18, "Lancement & Écran d'accueil AGP Pay"),
-    ("L'utilisateur commence par choisir son profil d'usager. AGP Pay prend en charge plusieurs catégories d'utilisateurs : les passagers occasionnels, les prépayés, les riverains exonérés et les véhicules administratifs.", 'iphone', 'extracted_img/pay_p5_img3.jpeg', 20, "Choix du Profil Usager"),
-    ("Dans le cadre de l'enregistrement initial, le conducteur saisit son numéro de téléphone mobile et reçoit immédiatement un code de confirmation sécurisé par SMS pour vérifier son identité.", 'iphone', 'extracted_img/pay_p6_img1.jpeg', 18, "Vérification OTP par SMS"),
-    ("Une fois le numéro authentifié, l'usager renseigne son nom, son prénom ainsi que la plaque d'immatriculation de son véhicule principal. L'application associe automatiquement l'immatriculation au compte usager.", 'iphone', 'extracted_img/pay_p6_img3.jpeg', 22, "Saisie des Informations Personnelles"),
-    ("L'application génère alors un QR Code unique d'identification, propre au véhicule. Ce QR Code permettra un passage rapide aux barrières de péage ainsi qu'une vérification instantanée par les agents.", 'iphone', 'extracted_img/pay_p7_img1.jpeg', 20, "Génération du Pass QR Code Sécurisé"),
-    ("Le profil est désormais actif. L'utilisateur accède à son tableau de bord mobile affichant son solde en FCFA, son statut d'activation et son historique récent de franchissement des péages.", 'iphone', 'extracted_img/pay_p7_img3.jpeg', 22, "Tableau de bord de l'Usager Mobile"),
-    ("Cette architecture développée en Flutter offre une fluidité optimale sur iPhone et garantit une sécurité renforcée des données usagers lors de l'enregistrement.", 'iphone', 'extracted_img/pay_p8_img1.jpeg', 18, "Validation & Fin du Parcours d'Inscription")
+    ("Bienvenue dans la démonstration de l'application mobile AGP Pay sur iPhone.", 'iphone', 'extracted_img/pay_p5_img1.jpeg', 18, "Lancement & Écran d'accueil AGP Pay"),
+    ("L'utilisateur commence par choisir son profil d'usager.", 'iphone', 'extracted_img/pay_p5_img3.jpeg', 20, "Choix du Profil Usager"),
+    ("Saisie du numéro de téléphone mobile et code OTP par SMS.", 'iphone', 'extracted_img/pay_p6_img1.jpeg', 18, "Vérification OTP par SMS"),
+    ("Saisie du nom, prénom et immatriculation du véhicule.", 'iphone', 'extracted_img/pay_p6_img3.jpeg', 22, "Saisie des Informations Personnelles"),
+    ("Génération du QR Code unique d'identification du véhicule.", 'iphone', 'extracted_img/pay_p7_img1.jpeg', 20, "Génération du Pass QR Code Sécurisé"),
+    ("Tableau de bord usager avec solde et historique.", 'iphone', 'extracted_img/pay_p7_img3.jpeg', 22, "Tableau de bord de l'Usager Mobile"),
+    ("Validation et fin du parcours d'inscription.", 'iphone', 'extracted_img/pay_p8_img1.jpeg', 18, "Validation & Fin du Parcours d'Inscription")
 ]
 
 # 2. VIDEO 2: AGP Pay Mobile - Recharge et Paiement (iPhone)
 video2_segments = [
-    ("Bienvenue dans cette deuxième démonstration mobile dédiée à la recharge de compte et au paiement des passages de péage via l'application AGP Pay sur iPhone.", 'iphone', 'extracted_img/pay_p9_img2.jpeg', 18, "Consultation du Solde & Choix de Recharge"),
-    ("Pour recharger son compte, l'usager sélectionne son mode de paiement mobile money préféré, tel que PayDunya ou SankMoney, très largement utilisés sur le territoire national.", 'iphone', 'extracted_img/pay_p9_img3.jpeg', 20, "Sélection Mobile Money (PayDunya / SankMoney)"),
-    ("L'usager indique le montant souhaité en FCFA. L'application initie une transaction sécurisée avec l'API du prestataire de paiement via des webhooks de confirmation instantanée.", 'iphone', 'extracted_img/pay_p9_img4.jpeg', 20, "Saisie du Montant & Validation Webhook"),
-    ("Dès validation de la transaction par l'opérateur monétique, le solde de l'application mobile est crédité immédiatement et une notification de confirmation est transmise à l'usager.", 'iphone', 'extracted_img/pay_p10_img1.jpeg', 20, "Confirmation & Mise à jour du Solde"),
-    ("Lors de l'arrivée au poste de péage, l'usager présente simplement son QR Code dynamique généré par l'application devant le lecteur optique de la voie de péage.", 'iphone', 'extracted_img/pay_p10_img2.jpeg', 20, "Présentation du QR Code à la voie de péage"),
-    ("Le système de voie lit le QR code, vérifie l'autorisation et le solde en moins d'une seconde, puis lève automatiquement la barrière pour autoriser le passage du véhicule.", 'iphone', 'extracted_img/pay_p11_img1.jpeg', 20, "Validation Automatique du Passage"),
-    ("Le reçu de passage électronique ainsi que l'historique détaillé du débit sont archivés dans l'application mobile, permettant une traçabilité parfaite des dépenses de déplacement.", 'iphone', 'extracted_img/pay_p11_img3.jpeg', 20, "Archivage du Reçu Numérique & Historique")
+    ("Consultation du solde et choix du mode de recharge.", 'iphone', 'extracted_img/pay_p9_img2.jpeg', 18, "Consultation du Solde & Choix de Recharge"),
+    ("Sélection Mobile Money (PayDunya / SankMoney).", 'iphone', 'extracted_img/pay_p9_img3.jpeg', 20, "Sélection Mobile Money (PayDunya / SankMoney)"),
+    ("Saisie du montant en FCFA et validation de la transaction.", 'iphone', 'extracted_img/pay_p9_img4.jpeg', 20, "Saisie du Montant & Validation Webhook"),
+    ("Confirmation instantanée et crédit du solde mobile.", 'iphone', 'extracted_img/pay_p10_img1.jpeg', 20, "Confirmation & Mise à jour du Solde"),
+    ("Présentation du Pass QR Code à la voie de péage.", 'iphone', 'extracted_img/pay_p10_img2.jpeg', 20, "Présentation du QR Code à la voie de péage"),
+    ("Lecture automatique du QR code et ouverture de barrière.", 'iphone', 'extracted_img/pay_p11_img1.jpeg', 20, "Validation Automatique du Passage"),
+    ("Archivage du reçu numérique et bilan des dépenses.", 'iphone', 'extracted_img/pay_p11_img3.jpeg', 20, "Archivage du Reçu Numérique & Historique")
 ]
 
 # 3. VIDEO 3: AGP Admin Web - Dashboard & Monitoring (Mac / macOS)
 video3_segments = [
-    ("Bienvenue dans la démonstration de la plateforme web d'administration AGP Admin exécutée sur macOS. Ce module présente le tableau de bord principal de supervision et le monitoring en temps réel du réseau national de péage.", 'mac', 'extracted_img/admin_p11_img1.png', 20, "Connexion & Vue d'ensemble du Dashboard"),
-    ("Développé avec la technologie Angular, le portail AGP Admin offre une vue synthétique des indicateurs clés : recettes quotidiennes globalisées, nombre total de véhicules franchis et répartition par catégorie.", 'mac', 'extracted_img/admin_p12_img1.png', 22, "Indicateurs Métriques de Performance"),
-    ("Le module de carte interactive permet aux administrateurs de surveiller l'état de fonctionnement de l'ensemble des postes de péage répartis sur le réseau routier national.", 'mac', 'extracted_img/admin_p12_img2.png', 20, "Supervision Géographique des Postes"),
-    ("Chaque poste transmet en temps réel ses métriques d'activité, la disponibilité des voies, l'état des barrières automatiques et les alertes de fraude ou d'anomalie de passage.", 'mac', 'extracted_img/admin_p14_img1.png', 20, "Monitoring par Poste & Santé des Equipements"),
-    ("Les graphiques dynamiques permettent d'analyser les pics de trafic par heure, d'anticiper les engorgements et d'optimiser l'affectation des agents sur les voies de passage.", 'mac', 'extracted_img/admin_p15_img1.png', 20, "Analyse des Flux & Trafic Horaire"),
-    ("Grâce à une interface réactive et sécurisée avec filtrage par rôle JWT, AGP Admin garantit un contrôle centralisé et efficace de toute l'infrastructure de péage intelligent.", 'mac', 'extracted_img/admin_p15_img2.png', 22, "Sécurité JWT & Contrôle d'Accès Administration")
+    ("Connexion au portail AGP Admin sur macOS.", 'mac', 'extracted_img/admin_p11_img1.png', 20, "Connexion & Vue d'ensemble du Dashboard"),
+    ("Indicateurs clés et recettes en temps réel.", 'mac', 'extracted_img/admin_p12_img1.png', 22, "Indicateurs Métriques de Performance"),
+    ("Carte interactive de supervision géolocalisée.", 'mac', 'extracted_img/admin_p12_img2.png', 20, "Supervision Géographique des Postes"),
+    ("État de santé des barrières et équipements.", 'mac', 'extracted_img/admin_p14_img1.png', 20, "Monitoring par Poste & Santé des Equipements"),
+    ("Analyse dynamique du trafic horaire.", 'mac', 'extracted_img/admin_p15_img1.png', 20, "Analyse des Flux & Trafic Horaire"),
+    ("Sécurité JWT et contrôle des accès administrateurs.", 'mac', 'extracted_img/admin_p15_img2.png', 22, "Sécurité JWT & Contrôle d'Accès Administration")
 ]
 
 # 4. VIDEO 4: AGP Admin Web - Gestion des Postes & Tarifs (Mac / macOS)
 video4_segments = [
-    ("Bienvenue dans ce quatrième module vidéo consacré à la configuration technique des postes de péage et à la gestion des grilles tarifaires sur le portail web AGP Admin.", 'mac', 'extracted_img/admin_p16_img1.png', 20, "Module de Configuration des Postes"),
-    ("Les administrateurs peuvent créer, modifier ou suspendre des postes de péage sur la plateforme, en définissant la localisation, le nombre de voies et les équipements installés.", 'mac', 'extracted_img/admin_p17_img1.png', 20, "Paramétrage des Lignes & Voies de Péage"),
-    ("Le module de tarification permet d'établir des grilles de tarifs différenciées selon la catégorie de véhicule : motos, véhicules légers, poids lourds et transports exceptionnels.", 'mac', 'extracted_img/admin_p18_img1.png', 22, "Définition des Grilles Tarifaires par Catégorie"),
-    ("AGP Admin prend également en charge la gestion des exonérations spécifiques pour les véhicules de secours, les forces de l'ordre et les riverains bénéficiant de tarifs préférentiels.", 'mac', 'extracted_img/admin_p18_img2.png', 22, "Gestion des Exonérations & Abonnements"),
-    ("Toute modification des règles tarifaires est immédiatement propagée vers les serveurs locaux des péages grâce à notre mécanisme de synchronisation en arrière-plan.", 'mac', 'extracted_img/admin_p19_img1.png', 20, "Propagation des Paramètres aux Serveurs Locaux"),
-    ("Cette flexibilité garantit l'alignement immédiat de l'ensemble des sites de péage sur la politique tarifaire nationale du Ministère des Transports.", 'mac', 'extracted_img/admin_p20_img1.png', 20, "Validation & Publication des Directives")
+    ("Module de configuration des postes de péage.", 'mac', 'extracted_img/admin_p16_img1.png', 20, "Module de Configuration des Postes"),
+    ("Paramétrage des voies et équipements installés.", 'mac', 'extracted_img/admin_p17_img1.png', 20, "Paramétrage des Lignes & Voies de Péage"),
+    ("Grilles tarifaires par catégorie de véhicule.", 'mac', 'extracted_img/admin_p18_img1.png', 22, "Définition des Grilles Tarifaires par Catégorie"),
+    ("Gestion des abonnements et exonérations.", 'mac', 'extracted_img/admin_p18_img2.png', 22, "Gestion des Exonérations & Abonnements"),
+    ("Propagation instantanée des règles vers les serveurs locaux.", 'mac', 'extracted_img/admin_p19_img1.png', 20, "Propagation des Paramètres aux Serveurs Locaux"),
+    ("Validation et publication des directives nationales.", 'mac', 'extracted_img/admin_p20_img1.png', 20, "Validation & Publication des Directives")
 ]
 
 # 5. VIDEO 5: AGP System - Synchronisation Cloud & Reporting (iPhone + Mac / macOS)
 video5_segments = [
-    ("Bienvenue dans le cinquième et dernier module de présentation de l'écosystème complet AGP : la synchronisation multi-sites DataSynchro, la gestion du mode déconnecté et le reporting cloud.", 'mac', 'extracted_img/admin_p21_img1.png', 22, "Architecture Multi-Sites & DataSynchro"),
-    ("Le moteur DataSynchro assure une réplication bidirectionnelle entre le serveur Cloud central hébergé sur VPS et les bases de données locales de chaque poste de péage.", 'mac', 'extracted_img/admin_p23_img1.png', 22, "Moteur de Synchronisation Bidirectionnelle Cloud/Local"),
-    ("En cas de coupure de la connexion Internet nationale, les postes de péage continuent de fonctionner en toute autonomie grâce à la base de données locale synchronisée.", 'iphone', 'extracted_img/pay_p12_img1.jpeg', 20, "Mode Déconnecté & Résilience Hors-Ligne"),
-    ("Dès que le réseau réseau est rétabli, les transactions enregistrées en local sont automatiquement téléversées vers le Cloud sans aucune perte de données ni interruption de service.", 'mac', 'extracted_img/admin_p25_img1.png', 22, "Rattrapage Automatique après Reconnexion"),
-    ("Le module de reporting produit des bilans financiers détaillés, des rapports d'audit comptable et des exports certifiés pour les autorités de régulation du péage.", 'mac', 'extracted_img/admin_p28_img1.png', 20, "Génération de Bilans & Audits Financials"),
-    ("L'écosystème AGP, combinant mobile Flutter et web Angular autour d'un backend Django REST robuste, illustre notre expertise dans le déploiement de solutions critiques complexes.", 'mac', 'extracted_img/admin_p30_img1.png', 22, "Conclusion & Synergie de l'Architecture AGP")
+    ("Architecture multi-sites DataSynchro.", 'mac', 'extracted_img/admin_p21_img1.png', 22, "Architecture Multi-Sites & DataSynchro"),
+    ("Réplication bidirectionnelle Cloud/Local.", 'mac', 'extracted_img/admin_p23_img1.png', 22, "Moteur de Synchronisation Bidirectionnelle Cloud/Local"),
+    ("Maintien du service en mode déconnecté.", 'iphone', 'extracted_img/pay_p12_img1.jpeg', 20, "Mode Déconnecté & Résilience Hors-Ligne"),
+    ("Rattrapage automatique des données après reconnexion.", 'mac', 'extracted_img/admin_p25_img1.png', 22, "Rattrapage Automatique après Reconnexion"),
+    ("Bilan financier et audits comptables.", 'mac', 'extracted_img/admin_p28_img1.png', 20, "Génération de Bilans & Audits Financials"),
+    ("Synergie de l'architecture AGP (Django, Angular, Flutter).", 'mac', 'extracted_img/admin_p30_img1.png', 22, "Conclusion & Synergie de l'Architecture AGP")
 ]
 
 if __name__ == "__main__":
-    print("=== STARTING AGP GIF GENERATION ===")
-    build_agp_gif(video1_segments, 'videos/agp_pay_mobile_inscription_passager.gif')
-    build_agp_gif(video2_segments, 'videos/agp_pay_mobile_recharge_paiement.gif')
-    build_agp_gif(video3_segments, 'videos/agp_admin_web_dashboard_monitoring.gif')
-    build_agp_gif(video4_segments, 'videos/agp_admin_web_gestion_postes_tarifs.gif')
-    build_agp_gif(video5_segments, 'videos/agp_system_synchro_cloud_reporting.gif')
-    print("=== ALL 5 AGP GIFS GENERATED SUCCESSFULLY! ===")
+    print("=== STARTING AGP MP4 VIDEO GENERATION ===")
+    build_agp_video(video1_segments, 'videos/agp_pay_mobile_inscription_passager.mp4')
+    build_agp_video(video2_segments, 'videos/agp_pay_mobile_recharge_paiement.mp4')
+    build_agp_video(video3_segments, 'videos/agp_admin_web_dashboard_monitoring.mp4')
+    build_agp_video(video4_segments, 'videos/agp_admin_web_gestion_postes_tarifs.mp4')
+    build_agp_video(video5_segments, 'videos/agp_system_synchro_cloud_reporting.mp4')
+    print("=== ALL 5 AGP VIDEOS GENERATED SUCCESSFULLY! ===")
