@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================
-    // --- 2. Module Général de Carrousel Défilant ---
+    // --- 2. Module Général de Carrousel Défilant (Lecture Automatique / Autoplay) ---
     // ==========================================================
     function initCarousel(carouselId) {
         const container = document.getElementById(carouselId);
@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!track || slides.length === 0) return;
 
         let currentIndex = 0;
+        let autoplayTimer = null;
+        const autoplayInterval = 4000; // Défilement automatique toutes les 4 secondes
 
         // Détermine le nombre de cartes visibles selon la largeur
         function getVisibleCount() {
@@ -94,6 +96,32 @@ document.addEventListener('DOMContentLoaded', () => {
             return Math.max(0, slides.length - visible);
         }
 
+        // Gestion de la lecture automatique
+        function startAutoplay() {
+            stopAutoplay();
+            if (getMaxIndex() > 0) {
+                autoplayTimer = setInterval(() => {
+                    goToSlide(currentIndex + 1);
+                }, autoplayInterval);
+            }
+        }
+
+        function stopAutoplay() {
+            if (autoplayTimer) {
+                clearInterval(autoplayTimer);
+                autoplayTimer = null;
+            }
+        }
+
+        function resetAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+        }
+
+        // Pause de l'autoplay sur survol de la souris ou interaction tactile
+        container.addEventListener('mouseenter', stopAutoplay);
+        container.addEventListener('mouseleave', startAutoplay);
+
         // Crée les puces de pagination
         function renderIndicators() {
             if (!indicatorsContainer) return;
@@ -106,7 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dot = document.createElement('div');
                 dot.classList.add('carousel-dot');
                 if (i === currentIndex) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(i));
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetAutoplay();
+                });
                 indicatorsContainer.appendChild(dot);
             }
         }
@@ -152,11 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Événements boutons Gauche / Droite avec gestion préventive
+        // Événements boutons Gauche / Droite avec gestion préventive et réinitialisation autoplay
         if (prevBtn) {
             prevBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 goToSlide(currentIndex - 1);
+                resetAutoplay();
             });
         }
 
@@ -164,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nextBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 goToSlide(currentIndex + 1);
+                resetAutoplay();
             });
         }
 
@@ -172,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isSwiping = false;
 
         track.addEventListener('touchstart', (e) => {
+            stopAutoplay();
             startX = e.touches[0].clientX;
             isSwiping = true;
         }, { passive: true });
@@ -189,17 +223,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     goToSlide(currentIndex - 1);
                 }
             }
+            startAutoplay();
         }, { passive: true });
 
         // Ajustement sur changement de taille d'écran
         window.addEventListener('resize', () => {
             renderIndicators();
             goToSlide(currentIndex);
+            resetAutoplay();
         });
 
-        // Initialisation du carrousel
+        // Initialisation du carrousel et lancement de l'autoplay
         renderIndicators();
         goToSlide(0);
+        startAutoplay();
     }
 
     // Initialisation des 3 carrousels
