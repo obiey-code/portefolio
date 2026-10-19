@@ -222,14 +222,194 @@
             margin-bottom: 20px;
         }
 
-        /* COURSLY MOCKUPS GRID */
-        .coursly-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+        /* CAROUSEL COMMON STYLES */
+        .carousel-container {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 0 50px;
         }
 
+        .carousel-track-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+            width: 100%;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+            touch-action: pan-y;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            padding: 0 12px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 640px) {
+            .carousel-slide {
+                flex: 0 0 50%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .carousel-slide {
+                flex: 0 0 33.333%;
+            }
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: white;
+            color: var(--secondary);
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .carousel-btn-prev { left: 0; }
+        .carousel-btn-next { right: 0; }
+
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+            box-shadow: none;
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            width: 28px;
+            border-radius: 10px;
+            background: var(--primary);
+        }
+
+        /* FONCIERCHAIN MVP CARDS */
+        .mvp-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mvp-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+        }
+
+        .mvp-card-header {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .mvp-card-header i {
+            font-size: 2.2rem;
+        }
+
+        .badge-mvp {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mvp-card-body {
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .mvp-card-body h3 {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .mvp-card-body p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-mvp-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-mvp-action:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        /* COURSLY MOCKUPS CAROUSEL */
         .mockup-card {
             background: white;
             border-radius: 16px;
@@ -238,6 +418,7 @@
             border: 1px solid #e2e8f0;
             display: flex;
             flex-direction: column;
+            height: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -319,13 +500,6 @@
         }
 
         /* VIDEO CARDS & PLAYER */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
         .video-card {
             background: white;
             border-radius: 15px;
@@ -334,6 +508,7 @@
             border: 1px solid #edf2f7;
             display: flex;
             flex-direction: column;
+            height: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .video-card:hover {
@@ -383,6 +558,120 @@
             background: #eff6ff;
             color: var(--primary);
             align-self: flex-start;
+        }
+
+        /* MODAL OVERLAY IN SITE */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: white;
+            width: 100%;
+            max-width: 1200px;
+            height: 88vh;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background: var(--secondary);
+            color: white;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .modal-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #f8fafc;
+        }
+
+        .modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-modal-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+        }
+
+        .btn-modal-open-all {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-modal-open-all:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-modal-close {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-modal-close:hover {
+            background: #dc2626;
+        }
+
+        .modal-body {
+            flex: 1;
+            background: #f1f5f9;
+            position: relative;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
 
         /* ACPE VERIFICATION CARD */
@@ -519,6 +808,17 @@
             .sliding-card:hover .card-detail { top: 0; left: 0; }
             .contact-section { padding: 30px 20px; }
             .acpe-card { flex-direction: column; text-align: center; }
+            .carousel-container { padding: 0 36px; }
+            .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+            .modal-container { height: 94vh; margin: 10px; }
+            .modal-header { padding: 10px 14px; }
+            .btn-modal-action { padding: 6px 12px; font-size: 0.78rem; }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-container { padding: 0 30px; }
+            .carousel-btn { width: 32px; height: 32px; font-size: 0.75rem; }
+            .modal-actions { width: 100%; justify-content: space-between; }
         }
     </style>
 </head>
@@ -532,6 +832,7 @@
         <div class="container">
             <ul>
                 <li><a href="#realisations">Projets</a></li>
+                <li><a href="#foncierchain">MVP FoncierChain</a></li>
                 <li><a href="#demo-coursly">Démos Coursly</a></li>
                 <li><a href="#demos-agp">Démos AGP</a></li>
                 <li><a href="#experience">Parcours</a></li>
@@ -578,10 +879,10 @@
                 <div class="card-detail">
                     <h4>Liens MVP FoncierChain</h4>
                     <ul>
-                        <li><i class="fas fa-globe"></i> <a href="https://foncier-chain-web1.vercel.app/" target="_blank">Web App Vercel</a></li>
-                        <li><i class="fas fa-mobile-alt"></i> <a href="https://foncierchain.github.io/FoncierChain-Mobile1/" target="_blank">Mobile Version Web</a></li>
-                        <li><i class="fab fa-android"></i> <a href="https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" target="_blank">Application Android (APK)</a></li>
-                        <li><i class="fas fa-laptop-code"></i> <a href="https://foncierchain.github.io/FoncierChain/" target="_blank">Site Vitrine Projet</a></li>
+                        <li><i class="fas fa-globe"></i> <a href="https://foncier-chain-web1.vercel.app/" class="foncier-mvp-link" data-title="FoncierChain - Web App Vercel">Web App Vercel</a></li>
+                        <li><i class="fas fa-mobile-alt"></i> <a href="https://foncierchain.github.io/FoncierChain-Mobile1/" class="foncier-mvp-link" data-title="FoncierChain - Mobile Version Web">Mobile Version Web</a></li>
+                        <li><i class="fab fa-android"></i> <a href="https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" class="foncier-mvp-link" data-title="FoncierChain - Application Android (APK)">Application Android (APK)</a></li>
+                        <li><i class="fas fa-laptop-code"></i> <a href="https://foncierchain.github.io/FoncierChain/" class="foncier-mvp-link" data-title="FoncierChain - Site Vitrine Projet">Site Vitrine Projet</a></li>
                     </ul>
                 </div>
             </div>
@@ -643,6 +944,92 @@
             </div>
         </div>
 
+        <!-- SECTION FONCIERCHAIN MVP -->
+        <h2 class="section-title" id="foncierchain">MVP FoncierChain (1er Prix MIABE 2026)</h2>
+        <p style="color: var(--text-light); margin-bottom: 25px;">
+            Découvrez les différentes applications et portails du projet <strong>FoncierChain</strong>. Cliquez sur un lien pour l'ouvrir directement dans l'interface intégrée du site sans redirection externe.
+        </p>
+
+        <!-- FONCIERCHAIN MVP CAROUSEL -->
+        <div class="carousel-container" id="foncierchain-carousel">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track">
+
+                    <!-- MVP 1: Web App Vercel -->
+                    <div class="carousel-slide">
+                        <div class="mvp-card">
+                            <div class="mvp-card-header" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+                                <i class="fas fa-globe" style="color: #3b82f6;"></i>
+                                <span class="badge-mvp">Web App</span>
+                            </div>
+                            <div class="mvp-card-body">
+                                <h3>Web App Vercel</h3>
+                                <p>Plateforme web de gestion foncière et cadastre sécurisé par Hyperledger Fabric.</p>
+                                <a href="https://foncier-chain-web1.vercel.app/" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Web App Vercel">
+                                    <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MVP 2: Mobile Version Web -->
+                    <div class="carousel-slide">
+                        <div class="mvp-card">
+                            <div class="mvp-card-header" style="background: linear-gradient(135deg, #0284c7, #0369a1);">
+                                <i class="fas fa-mobile-alt" style="color: #38bdf8;"></i>
+                                <span class="badge-mvp">Mobile Web</span>
+                            </div>
+                            <div class="mvp-card-body">
+                                <h3>Mobile Version Web</h3>
+                                <p>Interface mobile optimisée PWA pour la consultation des titres fonciers et transactions.</p>
+                                <a href="https://foncierchain.github.io/FoncierChain-Mobile1/" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Mobile Version Web">
+                                    <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MVP 3: Application Android (APK) -->
+                    <div class="carousel-slide">
+                        <div class="mvp-card">
+                            <div class="mvp-card-header" style="background: linear-gradient(135deg, #15803d, #166534);">
+                                <i class="fab fa-android" style="color: #4ade80;"></i>
+                                <span class="badge-mvp">Android APK</span>
+                            </div>
+                            <div class="mvp-card-body">
+                                <h3>Application Android (APK)</h3>
+                                <p>Dossier officiel contenant l'application Android native téléchargeable et installable.</p>
+                                <a href="https://drive.google.com/drive/folders/1YERhQn0vkk9kO0ml8p4oXJCgguA_Rxw8?usp=drive_link" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Application Android (APK)">
+                                    <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MVP 4: Site Vitrine Projet -->
+                    <div class="carousel-slide">
+                        <div class="mvp-card">
+                            <div class="mvp-card-header" style="background: linear-gradient(135deg, #d97706, #b45309);">
+                                <i class="fas fa-laptop-code" style="color: #fbbf24;"></i>
+                                <span class="badge-mvp">Site Vitrine</span>
+                            </div>
+                            <div class="mvp-card-body">
+                                <h3>Site Vitrine Projet</h3>
+                                <p>Portail de présentation officielle de la solution FoncierChain et documentation du projet.</p>
+                                <a href="https://foncierchain.github.io/FoncierChain/" class="btn-mvp-action foncier-mvp-link" data-title="FoncierChain - Site Vitrine Projet">
+                                    <i class="fas fa-window-restore"></i> Ouvrir dans l'interface
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="carousel-btn carousel-btn-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-indicators"></div>
+        </div>
+
         <!-- DEMO COURSLY - MOCKUPS IPHONE & MAC -->
         <h2 class="section-title" id="demo-coursly">Démonstrations & Mockups - Coursly</h2>
 
@@ -668,118 +1055,144 @@
             </div>
         </div>
 
-        <!-- MOCKUPS GRID COURSLY -->
-        <h3 style="font-size: 1.3rem; color: var(--secondary); margin-bottom: 20px;"><i class="fas fa-mobile-alt" style="color: #ff6b00;"></i> Screenshots Framés iPhone & Mac</h3>
-        <div class="coursly-grid">
+        <!-- MOCKUPS CAROUSEL COURSLY -->
+        <h3 style="font-size: 1.3rem; color: var(--secondary); margin-bottom: 20px;"><i class="fas fa-mobile-alt" style="color: #ff6b00;"></i> Screenshots Framés iPhone & Mac (Carrousel)</h3>
 
-            <!-- 1. Splash Screen -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_splash_chargement_iphone.png" alt="Coursly Mobile Splash Screen iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-sparkles" style="color: #f59e0b;"></i> 1. Ecran d'Accueil & Splash Screen</h4>
-                    <p>Ecran d'initialisation de l'application Coursly avec chargement sécurisé et identité visuelle dynamique.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+        <div class="carousel-container" id="coursly-carousel">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track">
+
+                    <!-- 1. Splash Screen -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_splash_chargement_iphone.png" alt="Coursly Mobile Splash Screen iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-sparkles" style="color: #f59e0b;"></i> 1. Ecran d'Accueil & Splash Screen</h4>
+                                <p>Ecran d'initialisation de l'application Coursly avec chargement sécurisé et identité visuelle dynamique.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Marketplace & Categories -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_marketplace_categories_iphone.png" alt="Coursly Mobile Marketplace iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-store" style="color: #ff6b00;"></i> 2. Marketplace & Catégories</h4>
+                                <p>Exploration des catégories de services : Restaurants, Supermarchés, Boutiques, Colis & Services sur-mesure.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Actions Rapides Client -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_client_actions_iphone.png" alt="Coursly Client Actions iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-list-check" style="color: #3b82f6;"></i> 3. Actions Client & Suivi</h4>
+                                <p>Raccourcis intelligents pour la demande de coursier express, commande de repas et historique d'expéditions.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Portefeuille Client -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_client_portefeuille_iphone.png" alt="Coursly Portefeuille Client iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-wallet" style="color: #10b981;"></i> 4. Portefeuille Virtuel & Solde</h4>
+                                <p>Gestion des crédits clients, rechargement Mobile Money, virement, retrait et traçabilité des opérations.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Visiteur & Outils Publics -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_visiteur_outils_iphone.png" alt="Coursly Outils Publics iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-screwdriver-wrench" style="color: #8b5cf6;"></i> 5. Services & Outils Publics</h4>
+                                <p>Outils d'estimation tarifaire, suivi de colis anonyme et support client accessible dès la page d'entrée.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Cockpit Coursier -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_coursier_cockpit_iphone.png" alt="Coursly Cockpit Coursier iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-motorcycle" style="color: #ef4444;"></i> 6. Cockpit Coursier & Relevé de Gains</h4>
+                                <p>Espace chauffeur/coursier : activation de disponibilité, solde des commissions et attribution des missions.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Navigation GPS Coursier -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper">
+                                <img src="images/coursly_framed/coursly_mobile_coursier_navigation_gps_iphone.png" alt="Coursly Navigation GPS iPhone">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-location-arrow" style="color: #06b6d4;"></i> 7. Navigation GPS & Livraisons</h4>
+                                <p>Guidage routier temps réel pour les coursiers, optimisation de la feuille de route et preuve de livraison.</p>
+                                <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Portail Partenaire Web (Mac) -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper web-wrapper">
+                                <img src="images/coursly_framed/coursly_web_partenaire_catalogue_mac.png" alt="Coursly Partenaire Web Mac">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-laptop" style="color: #0284c7;"></i> 8. Portail Web Partenaire — Catalogue</h4>
+                                <p>Interface marchand Web sur Mac pour la publication d'articles, la mise à jour des stocks et des tarifs.</p>
+                                <span class="badge-coursly-web"><i class="fab fa-apple"></i> macOS • MacBook Pro Web</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Admin Hub Rôles Web (Mac) -->
+                    <div class="carousel-slide">
+                        <div class="mockup-card">
+                            <div class="mockup-card-img-wrapper web-wrapper">
+                                <img src="images/coursly_framed/coursly_web_admin_roles_permissions_mac.png" alt="Coursly Admin Hub Web Mac">
+                            </div>
+                            <div class="mockup-card-body">
+                                <h4><i class="fas fa-user-shield" style="color: #6366f1;"></i> 9. Hub Administrateur — Rôles & Staff</h4>
+                                <p>Panneau d'administration centralisé pour la distribution des rôles, permissions et supervision des accès.</p>
+                                <span class="badge-coursly-web"><i class="fab fa-apple"></i> macOS • MacBook Pro Web</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- 2. Marketplace & Categories -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_marketplace_categories_iphone.png" alt="Coursly Mobile Marketplace iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-store" style="color: #ff6b00;"></i> 2. Marketplace & Catégories</h4>
-                    <p>Exploration des catégories de services : Restaurants, Supermarchés, Boutiques, Colis & Services sur-mesure.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
-                </div>
-            </div>
-
-            <!-- 3. Actions Rapides Client -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_client_actions_iphone.png" alt="Coursly Client Actions iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-list-check" style="color: #3b82f6;"></i> 3. Actions Client & Suivi</h4>
-                    <p>Raccourcis intelligents pour la demande de coursier express, commande de repas et historique d'expéditions.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
-                </div>
-            </div>
-
-            <!-- 4. Portefeuille Client -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_client_portefeuille_iphone.png" alt="Coursly Portefeuille Client iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-wallet" style="color: #10b981;"></i> 4. Portefeuille Virtuel & Solde</h4>
-                    <p>Gestion des crédits clients, rechargement Mobile Money, virement, retrait et traçabilité des opérations.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
-                </div>
-            </div>
-
-            <!-- 5. Visiteur & Outils Publics -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_visiteur_outils_iphone.png" alt="Coursly Outils Publics iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-screwdriver-wrench" style="color: #8b5cf6;"></i> 5. Services & Outils Publics</h4>
-                    <p>Outils d'estimation tarifaire, suivi de colis anonyme et support client accessible dès la page d'entrée.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
-                </div>
-            </div>
-
-            <!-- 6. Cockpit Coursier -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_coursier_cockpit_iphone.png" alt="Coursly Cockpit Coursier iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-motorcycle" style="color: #ef4444;"></i> 6. Cockpit Coursier & Relevé de Gains</h4>
-                    <p>Espace chauffeur/coursier : activation de disponibilité, solde des commissions et attribution des missions.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
-                </div>
-            </div>
-
-            <!-- 7. Navigation GPS Coursier -->
-            <div class="mockup-card">
-                <div class="mockup-card-img-wrapper">
-                    <img src="images/coursly_framed/coursly_mobile_coursier_navigation_gps_iphone.png" alt="Coursly Navigation GPS iPhone">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-location-arrow" style="color: #06b6d4;"></i> 7. Navigation GPS & Livraisons</h4>
-                    <p>Guidage routier temps réel pour les coursiers, optimisation de la feuille de route et preuve de livraison.</p>
-                    <span class="badge-coursly-mobile"><i class="fab fa-apple"></i> iPhone 15 Pro • Mobile</span>
-                </div>
-            </div>
-
-            <!-- 8. Portail Partenaire Web (Mac) -->
-            <div class="mockup-card" style="grid-column: span 1;">
-                <div class="mockup-card-img-wrapper web-wrapper">
-                    <img src="images/coursly_framed/coursly_web_partenaire_catalogue_mac.png" alt="Coursly Partenaire Web Mac">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-laptop" style="color: #0284c7;"></i> 8. Portail Web Partenaire — Catalogue</h4>
-                    <p>Interface marchand Web sur Mac pour la publication d'articles, la mise à jour des stocks et des tarifs.</p>
-                    <span class="badge-coursly-web"><i class="fab fa-apple"></i> macOS • MacBook Pro Web</span>
-                </div>
-            </div>
-
-            <!-- 9. Admin Hub Rôles Web (Mac) -->
-            <div class="mockup-card" style="grid-column: span 1;">
-                <div class="mockup-card-img-wrapper web-wrapper">
-                    <img src="images/coursly_framed/coursly_web_admin_roles_permissions_mac.png" alt="Coursly Admin Hub Web Mac">
-                </div>
-                <div class="mockup-card-body">
-                    <h4><i class="fas fa-user-shield" style="color: #6366f1;"></i> 9. Hub Administrateur — Rôles & Staff</h4>
-                    <p>Panneau d'administration centralisé pour la distribution des rôles, permissions et supervision des accès.</p>
-                    <span class="badge-coursly-web"><i class="fab fa-apple"></i> macOS • MacBook Pro Web</span>
-                </div>
-            </div>
-
+            <button class="carousel-btn carousel-btn-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-indicators"></div>
         </div>
 
         <!-- DEMOS VIDEO SIMULATION AGP -->
@@ -788,71 +1201,91 @@
             Découvrez nos 5 vidéos de démonstration simulées (durée minimale de 2 minutes chacune avec narration vocale complète), présentant les parcours utilisateur mobile sur iPhone et l'administration web Angular sur Mac / macOS.
         </p>
 
-        <div class="video-grid">
-            <!-- VIDEO 1 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="videos/agp_pay_mobile_inscription_passager.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-                <div class="video-card-body">
-                    <h3><i class="fas fa-mobile-screen-button" style="color: var(--primary);"></i> 1. AGP Pay — Inscription & Activation Passager</h3>
-                    <p>Simulation du parcours d'enregistrement usager, validation du numéro par SMS OTP, saisie d'immatriculation et génération du pass QR Code sur iPhone.</p>
-                    <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
-                </div>
-            </div>
+        <!-- AGP VIDEOS CAROUSEL -->
+        <div class="carousel-container" id="agp-videos-carousel">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track">
 
-            <!-- VIDEO 2 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="videos/agp_pay_mobile_recharge_paiement.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-                <div class="video-card-body">
-                    <h3><i class="fas fa-wallet" style="color: var(--primary);"></i> 2. AGP Pay — Recharge & Paiement Péage</h3>
-                    <p>Démonstration de la recharge de solde par Mobile Money (PayDunya / SankMoney) et passage automatique aux barrières par scan QR Code sur iPhone.</p>
-                    <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
-                </div>
-            </div>
+                    <!-- VIDEO 1 -->
+                    <div class="carousel-slide">
+                        <div class="video-card">
+                            <video controls preload="metadata">
+                                <source src="videos/agp_pay_mobile_inscription_passager.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture vidéo.
+                            </video>
+                            <div class="video-card-body">
+                                <h3><i class="fas fa-mobile-screen-button" style="color: var(--primary);"></i> 1. AGP Pay — Inscription & Activation Passager</h3>
+                                <p>Simulation du parcours d'enregistrement usager, validation du numéro par SMS OTP, saisie d'immatriculation et génération du pass QR Code sur iPhone.</p>
+                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- VIDEO 3 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="videos/agp_admin_web_dashboard_monitoring.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-                <div class="video-card-body">
-                    <h3><i class="fas fa-desktop" style="color: var(--primary);"></i> 3. AGP Admin — Dashboard & Monitoring Web</h3>
-                    <p>Supervision globale du réseau national de péage sur portail web Angular : recettes en temps réel, volume de trafic et état de santé des voies sur Mac.</p>
-                    <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
-                </div>
-            </div>
+                    <!-- VIDEO 2 -->
+                    <div class="carousel-slide">
+                        <div class="video-card">
+                            <video controls preload="metadata">
+                                <source src="videos/agp_pay_mobile_recharge_paiement.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture vidéo.
+                            </video>
+                            <div class="video-card-body">
+                                <h3><i class="fas fa-wallet" style="color: var(--primary);"></i> 2. AGP Pay — Recharge & Paiement Péage</h3>
+                                <p>Démonstration de la recharge de solde par Mobile Money (PayDunya / SankMoney) et passage automatique aux barrières par scan QR Code sur iPhone.</p>
+                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • 02:18 min</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- VIDEO 4 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="videos/agp_admin_web_gestion_postes_tarifs.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-                <div class="video-card-body">
-                    <h3><i class="fas fa-sliders" style="color: var(--primary);"></i> 4. AGP Admin — Postes de Péage & Tarification</h3>
-                    <p>Configuration des postes de péage, paramétrage des voies, définition des grilles tarifaires par catégorie de véhicule et gestion des abonnements sur Mac.</p>
-                    <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
-                </div>
-            </div>
+                    <!-- VIDEO 3 -->
+                    <div class="carousel-slide">
+                        <div class="video-card">
+                            <video controls preload="metadata">
+                                <source src="videos/agp_admin_web_dashboard_monitoring.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture vidéo.
+                            </video>
+                            <div class="video-card-body">
+                                <h3><i class="fas fa-desktop" style="color: var(--primary);"></i> 3. AGP Admin — Dashboard & Monitoring Web</h3>
+                                <p>Supervision globale du réseau national de péage sur portail web Angular : recettes en temps réel, volume de trafic et état de santé des voies sur Mac.</p>
+                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- VIDEO 5 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="videos/agp_system_synchro_cloud_reporting.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-                <div class="video-card-body">
-                    <h3><i class="fas fa-cloud-arrow-up" style="color: var(--primary);"></i> 5. AGP System — DataSynchro & Reporting</h3>
-                    <p>Architecture de réplication DataSynchro entre les serveurs locaux et le Cloud VPS, gestion de l'autonomie hors-ligne et édition des audits comptables.</p>
-                    <span class="badge-device"><i class="fab fa-apple"></i> Hybrid iPhone & Mac • 02:08 min</span>
+                    <!-- VIDEO 4 -->
+                    <div class="carousel-slide">
+                        <div class="video-card">
+                            <video controls preload="metadata">
+                                <source src="videos/agp_admin_web_gestion_postes_tarifs.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture vidéo.
+                            </video>
+                            <div class="video-card-body">
+                                <h3><i class="fas fa-sliders" style="color: var(--primary);"></i> 4. AGP Admin — Postes de Péage & Tarification</h3>
+                                <p>Configuration des postes de péage, paramétrage des voies, définition des grilles tarifaires par catégorie de véhicule et gestion des abonnements sur Mac.</p>
+                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • 02:04 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIDEO 5 -->
+                    <div class="carousel-slide">
+                        <div class="video-card">
+                            <video controls preload="metadata">
+                                <source src="videos/agp_system_synchro_cloud_reporting.mp4" type="video/mp4">
+                                Votre navigateur ne supporte pas la lecture vidéo.
+                            </video>
+                            <div class="video-card-body">
+                                <h3><i class="fas fa-cloud-arrow-up" style="color: var(--primary);"></i> 5. AGP System — DataSynchro & Reporting</h3>
+                                <p>Architecture de réplication DataSynchro entre les serveurs locaux et le Cloud VPS, gestion de l'autonomie hors-ligne et édition des audits comptables.</p>
+                                <span class="badge-device"><i class="fab fa-apple"></i> Hybrid iPhone & Mac • 02:08 min</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            <button class="carousel-btn carousel-btn-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+            <div class="carousel-indicators"></div>
         </div>
 
         <!-- EXPERIENCES PROFESSIONNELLES -->
@@ -997,6 +1430,29 @@
         </div>
 
     </main>
+
+    <!-- INTERFACE MODALE EN SITE SANS REDIRECTION -->
+    <div id="foncierchain-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-shield-halved" style="color: var(--primary);"></i>
+                    <span id="modal-url-title">Aperçu FoncierChain</span>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal-action btn-modal-open-all" id="modal-btn-open-all" title="Ouvrir tous les liens MVP dans des onglets séparés">
+                        <i class="fas fa-external-link-alt"></i> Tout ouvrir
+                    </button>
+                    <button type="button" class="btn-modal-action btn-modal-close" id="modal-btn-close" title="Fermer la fenêtre">
+                        <i class="fas fa-times"></i> Fermer la fenêtre
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <iframe id="modal-iframe" src="" title="Aperçu FoncierChain" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
