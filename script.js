@@ -255,6 +255,108 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel('agp-videos-carousel');
 
     // ==========================================================
+    // --- 2.5. Module des Carrousels d'Images Défilantes AGP ---
+    // ==========================================================
+    function initAGPImageSliders() {
+        const wrappers = document.querySelectorAll('.agp-slider-wrapper');
+
+        wrappers.forEach(wrapper => {
+            const images = wrapper.querySelectorAll('.agp-slide-img');
+            const prevBtn = wrapper.querySelector('.agp-step-prev');
+            const nextBtn = wrapper.querySelector('.agp-step-next');
+            const counter = wrapper.querySelector('.agp-step-counter');
+
+            if (!images.length) return;
+
+            let stepIndex = 0;
+            let slideTimer = null;
+            const slideInterval = 3500; // Défilement automatique des captures toutes les 3.5 sec
+
+            function updateStep(newIdx) {
+                images[stepIndex].classList.remove('active');
+                if (newIdx >= images.length) {
+                    stepIndex = 0;
+                } else if (newIdx < 0) {
+                    stepIndex = images.length - 1;
+                } else {
+                    stepIndex = newIdx;
+                }
+                images[stepIndex].classList.add('active');
+                if (counter) {
+                    counter.textContent = `Étape ${stepIndex + 1} / ${images.length}`;
+                }
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                slideTimer = setInterval(() => {
+                    updateStep(stepIndex + 1);
+                }, slideInterval);
+            }
+
+            function stopAutoplay() {
+                if (slideTimer) {
+                    clearInterval(slideTimer);
+                    slideTimer = null;
+                }
+            }
+
+            function resetAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    updateStep(stepIndex - 1);
+                    resetAutoplay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    updateStep(stepIndex + 1);
+                    resetAutoplay();
+                });
+            }
+
+            wrapper.addEventListener('mouseenter', stopAutoplay);
+            wrapper.addEventListener('mouseleave', startAutoplay);
+
+            // Support Swipe sur mobile pour les captures AGP
+            let startX = 0;
+            wrapper.addEventListener('touchstart', (e) => {
+                stopAutoplay();
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            wrapper.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diffX = startX - endX;
+                if (Math.abs(diffX) > 30) {
+                    if (diffX > 0) {
+                        updateStep(stepIndex + 1);
+                    } else {
+                        updateStep(stepIndex - 1);
+                    }
+                    resetAutoplay();
+                } else {
+                    startAutoplay();
+                }
+            }, { passive: true });
+
+            updateStep(0);
+            startAutoplay();
+        });
+    }
+
+    initAGPImageSliders();
+
+    // ==========================================================
     // --- 3. Interface Modale FoncierChain (Ouverture sans Redirection) ---
     // ==========================================================
     const modalOverlay = document.getElementById('foncierchain-modal');
