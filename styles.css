@@ -112,6 +112,8 @@ body {
 .navbar ul {
     list-style: none;
     display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     transition: transform 0.3s ease-out; 
 }
 
