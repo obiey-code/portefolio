@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.add('fa-xmark');
             }
             menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.setAttribute('aria-label', 'Fermer le menu');
         } else {
             nav.classList.remove('open');
             if (icon) {
@@ -29,14 +30,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.add('fa-bars');
             }
             menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
         }
     };
 
     if (menuToggle && nav) {
         menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             const isOpen = nav.classList.contains('open');
             updateMenuState(!isOpen);
+        });
+
+        // Clic en dehors du menu mobile pour le fermer automatiquement
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('open') && !nav.contains(e.target)) {
+                updateMenuState(false);
+            }
         });
     }
 
