@@ -302,126 +302,211 @@ section h2::after {
 
 
 /* ---------------------------------- */
-/* 4.5. AGP Cards & Sliding Image Carousel Styles */
+/* 4.5. AGP SINGLE SCREEN SHOWCASE STYLES */
 /* ---------------------------------- */
 
-.agp-card {
+.agp-showcase-container {
     background: #0f172a;
-    color: white;
-    border-radius: 16px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.agp-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-}
-
-.agp-slider-wrapper {
-    background: #090d16;
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.agp-slider-track {
-    position: relative;
-    width: 100%;
-    height: 280px;
-    background: #090d16;
-    overflow: hidden;
-}
-
-.agp-slide-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    transform: scale(0.98);
-    pointer-events: none;
-}
-
-.agp-slide-img.active {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-}
-
-.agp-slider-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 8px 15px;
-    background: rgba(15, 23, 42, 0.95);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 5;
-}
-
-.agp-step-btn {
-    background: rgba(255, 255, 255, 0.15);
+    margin-bottom: 60px;
     color: #f8fafc;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+}
+
+.agp-module-tabs {
+    display: flex;
+    background: #090d16;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.agp-tab-btn {
+    flex: 1;
+    min-width: 170px;
+    padding: 16px 12px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.88rem;
+    font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
-    transition: background 0.2s, transform 0.2s;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
 }
 
-.agp-step-btn:hover {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    transform: scale(1.1);
+.agp-tab-btn:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.04);
 }
 
-.agp-step-counter {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #94a3b8;
-    letter-spacing: 0.5px;
+.agp-tab-btn.active {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.12);
+    border-bottom-color: #3b82f6;
 }
 
-.agp-card-body {
-    padding: 20px;
+.agp-tab-btn i {
+    font-size: 1rem;
+}
+
+.agp-display-viewport {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 480px;
+}
+
+@media (max-width: 900px) {
+    .agp-display-viewport {
+        grid-template-columns: 1fr;
+    }
+}
+
+.agp-media-wrapper {
+    background: #050811;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    background: #0f172a;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 380px;
 }
 
-.agp-card-body h3 {
-    font-size: 1.1rem;
+.agp-media-wrapper video {
+    width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.agp-media-badge {
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.agp-info-panel {
+    padding: 35px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+}
+
+.agp-info-header h3 {
+    font-size: 1.3rem;
     color: #f8fafc;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.agp-info-header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.agp-tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.agp-pill {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.agp-workflow-container {
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.agp-workflow-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f8fafc;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.agp-card-body p {
+.agp-steps-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.agp-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     font-size: 0.88rem;
-    color: #94a3b8;
-    margin-bottom: 15px;
-    flex-grow: 1;
+    color: #cbd5e1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: background 0.2s ease;
+}
+
+.agp-step-item:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: #f8fafc;
+}
+
+.agp-step-number {
+    background: #2563eb;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
 /* ---------------------------------- */
