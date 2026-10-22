@@ -249,112 +249,185 @@ document.addEventListener('DOMContentLoaded', () => {
         startAutoplay();
     }
 
-    // Initialisation des 3 carrousels
+    // Initialisation des carrousels
     initCarousel('foncierchain-carousel');
     initCarousel('coursly-carousel');
-    initCarousel('agp-videos-carousel');
 
     // ==========================================================
-    // --- 2.5. Module des Carrousels d'Images Défilantes AGP ---
+    // --- 2.5. Vitrine Unifiée AGP (Single Screen Showcase) ---
     // ==========================================================
-    function initAGPImageSliders() {
-        const wrappers = document.querySelectorAll('.agp-slider-wrapper');
+    function initAGPSingleScreenShowcase() {
+        const tabBtns = document.querySelectorAll('.agp-tab-btn');
+        const mainVideo = document.getElementById('agp-main-video');
+        const videoSrc = document.getElementById('agp-main-video-src');
+        const deviceBadge = document.getElementById('agp-device-badge');
+        const moduleTitle = document.getElementById('agp-module-title');
+        const moduleDesc = document.getElementById('agp-module-desc');
+        const techPills = document.getElementById('agp-tech-pills');
+        const stepsList = document.getElementById('agp-steps-list');
 
-        wrappers.forEach(wrapper => {
-            const images = wrapper.querySelectorAll('.agp-slide-img');
-            const prevBtn = wrapper.querySelector('.agp-step-prev');
-            const nextBtn = wrapper.querySelector('.agp-step-next');
-            const counter = wrapper.querySelector('.agp-step-counter');
+        if (!tabBtns.length || !mainVideo) return;
 
-            if (!images.length) return;
+        const agpModulesData = {
+            inscription: {
+                title: '<i class="fas fa-mobile-screen-button" style="color: #3b82f6;"></i> 1. AGP Pay — Inscription & Activation Passager',
+                desc: 'Parcours usager complet : création du profil, vérification OTP par SMS, enregistrement de l\'immatriculation du véhicule et génération du Pass QR Code sécurisé.',
+                video: 'videos/agp_pay_mobile_inscription_passager.mp4',
+                badge: '<i class="fab fa-apple"></i> iPhone 15 Pro • App Mobile Flutter',
+                pills: [
+                    '<span class="agp-pill"><i class="fas fa-code"></i> Flutter / Dart</span>',
+                    '<span class="agp-pill"><i class="fas fa-server"></i> API Django REST</span>',
+                    '<span class="agp-pill"><i class="fas fa-qrcode"></i> Pass QR Code JWT</span>',
+                    '<span class="agp-pill"><i class="fas fa-comment-sms"></i> OTP SMS Twilio</span>'
+                ],
+                steps: [
+                    'Lancement de l\'application AGP Pay & Écran d\'accueil',
+                    'Sélection du profil Usager Passager / Conducteur',
+                    'Saisie du numéro de téléphone & vérification OTP SMS',
+                    'Informations personnelles & immatriculation du véhicule',
+                    'Génération du Pass QR Code sécurisé unique',
+                    'Accès au tableau de bord usager avec statut du pass'
+                ]
+            },
+            recharge: {
+                title: '<i class="fas fa-wallet" style="color: #3b82f6;"></i> 2. AGP Pay — Recharge Mobile Money & Péage',
+                desc: 'Recharge instantanée via Mobile Money (PayDunya / SankMoney), confirmation par Webhooks sécurisés et débit automatique lors du passage aux barrières de péage.',
+                video: 'videos/agp_pay_mobile_recharge_paiement.mp4',
+                badge: '<i class="fab fa-apple"></i> iPhone 15 Pro • Mobile Money & Scan QR',
+                pills: [
+                    '<span class="agp-pill"><i class="fas fa-wallet"></i> PayDunya API</span>',
+                    '<span class="agp-pill"><i class="fas fa-money-bill-transfer"></i> SankMoney</span>',
+                    '<span class="agp-pill"><i class="fas fa-bolt"></i> Webhooks Instantanés</span>',
+                    '<span class="agp-pill"><i class="fas fa-receipt"></i> Reçu Numérique PDF</span>'
+                ],
+                steps: [
+                    'Consultation du solde actuel sur le portefeuille mobile',
+                    'Choix de l\'opérateur Mobile Money (PayDunya / SankMoney)',
+                    'Saisie du montant en FCFA & validation de la transaction',
+                    'Mise à jour instantanée du solde via Webhook sécurisé',
+                    'Présentation du QR Code au borne de voie de péage',
+                    'Débit automatique & ouverture instantanée de la barrière',
+                    'Téléchargement du reçu numérique & historique comptable'
+                ]
+            },
+            dashboard: {
+                title: '<i class="fas fa-desktop" style="color: #3b82f6;"></i> 3. AGP Admin — Dashboard & Monitoring Web',
+                desc: 'Supervision globale et en temps réel du réseau national de péage sur portail Angular : recettes cumulées, trafic horaire et cartographie des gares.',
+                video: 'videos/agp_admin_web_dashboard_monitoring.mp4',
+                badge: '<i class="fab fa-apple"></i> macOS • Portal Web Angular 17',
+                pills: [
+                    '<span class="agp-pill"><i class="fab fa-angular"></i> Web Angular</span>',
+                    '<span class="agp-pill"><i class="fas fa-chart-line"></i> Analytics Temps Réel</span>',
+                    '<span class="agp-pill"><i class="fas fa-shield-halved"></i> Auth JWT & Rôles</span>',
+                    '<span class="agp-pill"><i class="fas fa-map-location-dot"></i> Mapping Postes</span>'
+                ],
+                steps: [
+                    'Connexion sécurisée au portail AGP Admin avec authentification JWT',
+                    'Indicateurs clés de performance (KPIs) & recettes nationales',
+                    'Carte interactive de supervision géolocalisée des postes de péage',
+                    'Surveillance en temps réel de l\'état des voies & barrières',
+                    'Graphiques dynamiques des flux de trafic horaire & hebdomadaire',
+                    'Gestion centralisée des comptes administrateurs et privilèges'
+                ]
+            },
+            postes: {
+                title: '<i class="fas fa-sliders" style="color: #3b82f6;"></i> 4. AGP Admin — Postes de Péage & Tarification',
+                desc: 'Configuration centralisée des gares de péage, voies d\'accès, grilles tarifaires par catégorie de véhicule (Poids lourds, Léger, Moto) et abonnements.',
+                video: 'videos/agp_admin_web_gestion_postes_tarifs.mp4',
+                badge: '<i class="fab fa-apple"></i> macOS • Portal Web Angular 17',
+                pills: [
+                    '<span class="agp-pill"><i class="fas fa-building-columns"></i> Postes & Voies</span>',
+                    '<span class="agp-pill"><i class="fas fa-tags"></i> Grilles Tarifaires</span>',
+                    '<span class="agp-pill"><i class="fas fa-id-card"></i> Abonnements Pass</span>',
+                    '<span class="agp-pill"><i class="fas fa-network-wired"></i> Synchro Local Node</span>'
+                ],
+                steps: [
+                    'Création & paramétrage des postes de péage nationaux',
+                    'Configuration des lignes & équipements par voie (Caméras, Barrières)',
+                    'Définition des grilles tarifaires selon la classe du véhicule',
+                    'Gestion des exemptions, cartes d\'abonnement & pass permanents',
+                    'Propagation instantanée des tarifs aux serveurs locaux des postes',
+                    'Audit & validation des directives par la direction générale'
+                ]
+            },
+            synchro: {
+                title: '<i class="fas fa-cloud-arrow-up" style="color: #3b82f6;"></i> 5. AGP System — DataSynchro Cloud & Reporting',
+                desc: 'Architecture résiliente multi-sites avec moteur DataSynchro : réplication bidirectionnelle Cloud/Local, tolérance aux pannes réseau et reporting financier.',
+                video: 'videos/agp_system_synchro_cloud_reporting.mp4',
+                badge: '<i class="fab fa-apple"></i> Hybrid Cloud VPS & Local Nodes',
+                pills: [
+                    '<span class="agp-pill"><i class="fas fa-arrows-rotate"></i> Moteur DataSynchro</span>',
+                    '<span class="agp-pill"><i class="fas fa-wifi-slash"></i> Resilient Offline Mode</span>',
+                    '<span class="agp-pill"><i class="fas fa-database"></i> PostgreSQL & SQLite</span>',
+                    '<span class="agp-pill"><i class="fas fa-file-invoice-dollar"></i> Reporting & Audits</span>'
+                ],
+                steps: [
+                    'Architecture distribuée : Serveur Cloud VPS & Serveurs de Voie Locaux',
+                    'Moteur DataSynchro pour la réplication continue des transactions',
+                    'Fonctionnement 100% autonome en cas de coupure Internet locale',
+                    'Rattrapage automatique & synchronisation delta dès le rétablissement',
+                    'Génération automatisée des bilans financiers & audits comptables',
+                    'Synergie de l\'écosystème complet AGP (Django REST, Angular, Flutter)'
+                ]
+            }
+        };
 
-            let stepIndex = 0;
-            let slideTimer = null;
-            const slideInterval = 3500; // Défilement automatique des captures toutes les 3.5 sec
+        function switchModule(modKey) {
+            const modData = agpModulesData[modKey];
+            if (!modData) return;
 
-            function updateStep(newIdx) {
-                images[stepIndex].classList.remove('active');
-                if (newIdx >= images.length) {
-                    stepIndex = 0;
-                } else if (newIdx < 0) {
-                    stepIndex = images.length - 1;
-                } else {
-                    stepIndex = newIdx;
-                }
-                images[stepIndex].classList.add('active');
-                if (counter) {
-                    counter.textContent = `Étape ${stepIndex + 1} / ${images.length}`;
-                }
+            // Update active tab button
+            tabBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-module') === modKey);
+            });
+
+            // Update video
+            if (videoSrc && mainVideo) {
+                mainVideo.pause();
+                videoSrc.src = modData.video;
+                mainVideo.load();
+                mainVideo.play().catch(() => {});
             }
 
-            function startAutoplay() {
-                stopAutoplay();
-                slideTimer = setInterval(() => {
-                    updateStep(stepIndex + 1);
-                }, slideInterval);
+            // Update badge
+            if (deviceBadge) {
+                deviceBadge.innerHTML = modData.badge;
             }
 
-            function stopAutoplay() {
-                if (slideTimer) {
-                    clearInterval(slideTimer);
-                    slideTimer = null;
-                }
+            // Update title & desc
+            if (moduleTitle) moduleTitle.innerHTML = modData.title;
+            if (moduleDesc) moduleDesc.textContent = modData.desc;
+
+            // Update tech pills
+            if (techPills) {
+                techPills.innerHTML = modData.pills.join('');
             }
 
-            function resetAutoplay() {
-                stopAutoplay();
-                startAutoplay();
+            // Update workflow steps
+            if (stepsList) {
+                stepsList.innerHTML = modData.steps.map((stepText, idx) => `
+                    <li class="agp-step-item">
+                        <span class="agp-step-number">${idx + 1}</span>
+                        <span>${stepText}</span>
+                    </li>
+                `).join('');
             }
+        }
 
-            if (prevBtn) {
-                prevBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    updateStep(stepIndex - 1);
-                    resetAutoplay();
-                });
-            }
-
-            if (nextBtn) {
-                nextBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    updateStep(stepIndex + 1);
-                    resetAutoplay();
-                });
-            }
-
-            wrapper.addEventListener('mouseenter', stopAutoplay);
-            wrapper.addEventListener('mouseleave', startAutoplay);
-
-            // Support Swipe sur mobile pour les captures AGP
-            let startX = 0;
-            wrapper.addEventListener('touchstart', (e) => {
-                stopAutoplay();
-                startX = e.touches[0].clientX;
-            }, { passive: true });
-
-            wrapper.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].clientX;
-                const diffX = startX - endX;
-                if (Math.abs(diffX) > 30) {
-                    if (diffX > 0) {
-                        updateStep(stepIndex + 1);
-                    } else {
-                        updateStep(stepIndex - 1);
-                    }
-                    resetAutoplay();
-                } else {
-                    startAutoplay();
-                }
-            }, { passive: true });
-
-            updateStep(0);
-            startAutoplay();
+        // Attach click listener to tab buttons
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modKey = btn.getAttribute('data-module');
+                switchModule(modKey);
+            });
         });
+
+        // Initialize with default module 'inscription'
+        switchModule('inscription');
     }
 
-    initAGPImageSliders();
+    initAGPSingleScreenShowcase();
 
     // ==========================================================
     // --- 3. Interface Modale FoncierChain (Ouverture sans Redirection) ---

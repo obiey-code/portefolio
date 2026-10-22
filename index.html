@@ -619,6 +619,211 @@
             align-self: flex-start;
         }
 
+        /* AGP SINGLE SCREEN SHOWCASE STYLES */
+        .agp-showcase-container {
+            background: #0f172a;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 60px;
+            color: #f8fafc;
+        }
+
+        .agp-module-tabs {
+            display: flex;
+            background: #090d16;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .agp-tab-btn {
+            flex: 1;
+            min-width: 170px;
+            padding: 16px 12px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+
+        .agp-tab-btn:hover {
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .agp-tab-btn.active {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.12);
+            border-bottom-color: #3b82f6;
+        }
+
+        .agp-tab-btn i {
+            font-size: 1rem;
+        }
+
+        .agp-display-viewport {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 480px;
+        }
+
+        @media (max-width: 900px) {
+            .agp-display-viewport {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .agp-media-wrapper {
+            background: #050811;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            min-height: 380px;
+        }
+
+        .agp-media-wrapper video {
+            width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .agp-media-badge {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .agp-info-panel {
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+        }
+
+        .agp-info-header h3 {
+            font-size: 1.3rem;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .agp-info-header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .agp-tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .agp-pill {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .agp-workflow-container {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .agp-workflow-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #f8fafc;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .agp-steps-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .agp-step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.88rem;
+            color: #cbd5e1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: background 0.2s ease;
+        }
+
+        .agp-step-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: #f8fafc;
+        }
+
+        .agp-step-number {
+            background: #2563eb;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
         /* VIDEO CARDS & PLAYER */
         .video-card {
             background: #0f172a;
@@ -1366,154 +1571,73 @@
             <div class="carousel-indicators"></div>
         </div>
 
-        <!-- DEMOS IMAGES DEFILANTES SIMULATION AGP -->
-        <h2 class="section-title" id="demos-agp">Démonstrations & Captures Défilantes AGP (iPhone & Mac)</h2>
+        <!-- DEMO AGP PAY & ADMIN - ECRAN UNIFIE COMPLET -->
+        <h2 class="section-title" id="demos-agp">Démonstration Unifiée AGP Pay & AGP Admin</h2>
         <p style="color: var(--text-light); margin-bottom: 25px;">
-            Explorez les carrousels de captures d'écran défilantes du système AGP, présentant les parcours mobiles Flutter (iPhone 15 Pro) et le portail d'administration Web Angular (Mac / macOS).
+            Vitrine complète de la plateforme AGP (Péage Intelligent Multi-sites). Tout le système est présenté sur cet écran unique : cliquez sur les onglets ci-dessous pour switcher instantanément entre les modules et visionner la démonstration complète.
         </p>
 
-        <!-- AGP IMAGES CAROUSEL -->
-        <div class="carousel-container" id="agp-videos-carousel">
-            <button class="carousel-btn carousel-btn-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
-            <div class="carousel-track-wrapper">
-                <div class="carousel-track">
+        <!-- AGP SINGLE SCREEN SHOWCASE -->
+        <div class="agp-showcase-container">
+            <!-- TABS DE SELECTION DES MODULES AGP -->
+            <div class="agp-module-tabs">
+                <button class="agp-tab-btn active" data-module="inscription">
+                    <i class="fas fa-mobile-screen-button"></i>
+                    <span>1. Inscription Passager</span>
+                </button>
+                <button class="agp-tab-btn" data-module="recharge">
+                    <i class="fas fa-wallet"></i>
+                    <span>2. Recharge & Péage</span>
+                </button>
+                <button class="agp-tab-btn" data-module="dashboard">
+                    <i class="fas fa-desktop"></i>
+                    <span>3. Dashboard Admin</span>
+                </button>
+                <button class="agp-tab-btn" data-module="postes">
+                    <i class="fas fa-sliders"></i>
+                    <span>4. Postes & Tarifs</span>
+                </button>
+                <button class="agp-tab-btn" data-module="synchro">
+                    <i class="fas fa-cloud-arrow-up"></i>
+                    <span>5. DataSynchro Cloud</span>
+                </button>
+            </div>
 
-                    <!-- MODULE 1: AGP Pay Mobile - Inscription Passager -->
-                    <div class="carousel-slide">
-                        <div class="agp-card">
-                            <div class="agp-slider-wrapper" data-agp-slider="inscription">
-                                <div class="agp-slider-track">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_0.png" alt="Étape 1 - Accueil & Inscription Passager" class="agp-slide-img active">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_1.png" alt="Étape 2 - Sélection du profil Usager" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_2.png" alt="Étape 3 - Saisie téléphone et validation OTP" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_3.png" alt="Étape 4 - Informations d'immatriculation" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_4.png" alt="Étape 5 - Génération du Pass QR Code" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_5.png" alt="Étape 6 - Tableau de bord Usager" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_6.png" alt="Étape 7 - Profil actif & Pass Valide" class="agp-slide-img">
-                                </div>
-                                <div class="agp-slider-controls">
-                                    <button class="agp-step-btn agp-step-prev" aria-label="Étape précédente"><i class="fas fa-chevron-left"></i></button>
-                                    <span class="agp-step-counter">Étape 1 / 7</span>
-                                    <button class="agp-step-btn agp-step-next" aria-label="Étape suivante"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                            <div class="agp-card-body">
-                                <h3><i class="fas fa-mobile-screen-button" style="color: var(--primary);"></i> 1. AGP Pay — Inscription & Activation Passager</h3>
-                                <p>Captures défilantes du parcours usager : enregistrement, validation OTP par SMS, immatriculation véhicule et génération du Pass QR Code sur iPhone.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • Captures défilantes</span>
-                            </div>
+            <!-- ECRAN PRINCIPAL DE VISIONNAGE UNIFIE -->
+            <div class="agp-display-viewport">
+                <!-- COLONNE GAUCHE: VIDEO INTERACTIVE & BADGE DEVICE -->
+                <div class="agp-media-wrapper">
+                    <video id="agp-main-video" autoplay muted loop playsinline preload="auto">
+                        <source id="agp-main-video-src" src="videos/agp_pay_mobile_inscription_passager.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                    </video>
+                    <div class="agp-media-badge" id="agp-device-badge">
+                        <i class="fab fa-apple"></i> <span>iPhone 15 Pro • App Mobile Flutter</span>
+                    </div>
+                </div>
+
+                <!-- COLONNE DROITE: FICHE DESCRIPTIVE & WORKFLOW D'ETAPES -->
+                <div class="agp-info-panel">
+                    <div class="agp-info-header">
+                        <h3 id="agp-module-title"><i class="fas fa-mobile-screen-button" style="color: var(--primary);"></i> 1. AGP Pay — Inscription & Activation Passager</h3>
+                        <p id="agp-module-desc">Parcours usager complet : enregistrement du profil, vérification OTP par SMS, immatriculation du véhicule et génération du Pass QR Code sécurisé.</p>
+                        <div class="agp-tech-pills" id="agp-tech-pills">
+                            <span class="agp-pill"><i class="fas fa-code"></i> Flutter / Dart</span>
+                            <span class="agp-pill"><i class="fas fa-server"></i> API Django REST</span>
+                            <span class="agp-pill"><i class="fas fa-qrcode"></i> Pass QR Code JWT</span>
                         </div>
                     </div>
 
-                    <!-- MODULE 2: AGP Pay Mobile - Recharge & Paiement -->
-                    <div class="carousel-slide">
-                        <div class="agp-card">
-                            <div class="agp-slider-wrapper" data-agp-slider="recharge">
-                                <div class="agp-slider-track">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_0.png" alt="Étape 1 - Solde & Recharge" class="agp-slide-img active">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_1.png" alt="Étape 2 - Choix Mobile Money" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_2.png" alt="Étape 3 - Confirmation Montant FCFA" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_3.png" alt="Étape 4 - Validation Webhook Instantanée" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_4.png" alt="Étape 5 - Scan QR Code en Voie de Péage" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_5.png" alt="Étape 6 - Débit Automatique & Barrière" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_6.png" alt="Étape 7 - Reçu Numérique & Bilan" class="agp-slide-img">
-                                </div>
-                                <div class="agp-slider-controls">
-                                    <button class="agp-step-btn agp-step-prev" aria-label="Étape précédente"><i class="fas fa-chevron-left"></i></button>
-                                    <span class="agp-step-counter">Étape 1 / 7</span>
-                                    <button class="agp-step-btn agp-step-next" aria-label="Étape suivante"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                            <div class="agp-card-body">
-                                <h3><i class="fas fa-wallet" style="color: var(--primary);"></i> 2. AGP Pay — Recharge & Paiement Péage</h3>
-                                <p>Captures défilantes de la recharge Mobile Money (PayDunya / SankMoney), validation du solde et passage automatique aux barrières de péage sur iPhone.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> iPhone Mockup • Captures défilantes</span>
-                            </div>
+                    <div class="agp-workflow-container">
+                        <div class="agp-workflow-title">
+                            <i class="fas fa-list-check" style="color: var(--accent);"></i> Étapes du Workflow en Démo
                         </div>
+                        <ul class="agp-steps-list" id="agp-steps-list">
+                            <!-- Injected dynamically by JS -->
+                        </ul>
                     </div>
-
-                    <!-- MODULE 3: AGP Admin Web - Dashboard & Monitoring -->
-                    <div class="carousel-slide">
-                        <div class="agp-card">
-                            <div class="agp-slider-wrapper" data-agp-slider="dashboard">
-                                <div class="agp-slider-track">
-                                    <img src="images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_0.png" alt="Étape 1 - Connexion & Dashboard Global" class="agp-slide-img active">
-                                    <img src="images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_1.png" alt="Étape 2 - Métriques & Recettes Temps Réel" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_2.png" alt="Étape 3 - Cartographie des Postes de Péage" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_3.png" alt="Étape 4 - État de Santé des Équipements" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_4.png" alt="Étape 5 - Graphique des Flux de Trafic" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_5.png" alt="Étape 6 - Sécurité JWT & Gestion Rôles" class="agp-slide-img">
-                                </div>
-                                <div class="agp-slider-controls">
-                                    <button class="agp-step-btn agp-step-prev" aria-label="Étape précédente"><i class="fas fa-chevron-left"></i></button>
-                                    <span class="agp-step-counter">Étape 1 / 6</span>
-                                    <button class="agp-step-btn agp-step-next" aria-label="Étape suivante"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                            <div class="agp-card-body">
-                                <h3><i class="fas fa-desktop" style="color: var(--primary);"></i> 3. AGP Admin — Dashboard & Monitoring Web</h3>
-                                <p>Captures défilantes de la supervision globale du réseau national sur portail Angular : recettes en temps réel, volume de trafic et état des voies sur Mac.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • Captures défilantes</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MODULE 4: AGP Admin Web - Postes & Tarifs -->
-                    <div class="carousel-slide">
-                        <div class="agp-card">
-                            <div class="agp-slider-wrapper" data-agp-slider="postes">
-                                <div class="agp-slider-track">
-                                    <img src="images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_0.png" alt="Étape 1 - Configuration des Postes" class="agp-slide-img active">
-                                    <img src="images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_1.png" alt="Étape 2 - Paramétrage des Voies de Péage" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_2.png" alt="Étape 3 - Grilles Tarifaires par Catégorie" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_3.png" alt="Étape 4 - Abonnements & Exonérations" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_4.png" alt="Étape 5 - Propagation aux Serveurs Locaux" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_5.png" alt="Étape 6 - Publication des Directives" class="agp-slide-img">
-                                </div>
-                                <div class="agp-slider-controls">
-                                    <button class="agp-step-btn agp-step-prev" aria-label="Étape précédente"><i class="fas fa-chevron-left"></i></button>
-                                    <span class="agp-step-counter">Étape 1 / 6</span>
-                                    <button class="agp-step-btn agp-step-next" aria-label="Étape suivante"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                            <div class="agp-card-body">
-                                <h3><i class="fas fa-sliders" style="color: var(--primary);"></i> 4. AGP Admin — Postes de Péage & Tarification</h3>
-                                <p>Captures défilantes du paramétrage des postes, voies de péage, grilles tarifaires par catégorie de véhicule et distribution des abonnements sur Mac.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> Mac / macOS Mockup • Captures défilantes</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MODULE 5: AGP System - Synchro Cloud & Reporting -->
-                    <div class="carousel-slide">
-                        <div class="agp-card">
-                            <div class="agp-slider-wrapper" data-agp-slider="synchro">
-                                <div class="agp-slider-track">
-                                    <img src="images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_0.png" alt="Étape 1 - Architecture Multi-Sites" class="agp-slide-img active">
-                                    <img src="images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_1.png" alt="Étape 2 - Moteur DataSynchro Cloud/Local" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_2.png" alt="Étape 3 - Mode Déconnecté & Autonomie" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_3.png" alt="Étape 4 - Rattrapage Automatique Données" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_4.png" alt="Étape 5 - Bilans Financiers & Audits" class="agp-slide-img">
-                                    <img src="images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_5.png" alt="Étape 6 - Synergie Django, Angular, Flutter" class="agp-slide-img">
-                                </div>
-                                <div class="agp-slider-controls">
-                                    <button class="agp-step-btn agp-step-prev" aria-label="Étape précédente"><i class="fas fa-chevron-left"></i></button>
-                                    <span class="agp-step-counter">Étape 1 / 6</span>
-                                    <button class="agp-step-btn agp-step-next" aria-label="Étape suivante"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                            </div>
-                            <div class="agp-card-body">
-                                <h3><i class="fas fa-cloud-arrow-up" style="color: var(--primary);"></i> 5. AGP System — DataSynchro & Reporting</h3>
-                                <p>Captures défilantes de l'architecture de réplication DataSynchro entre serveurs locaux et Cloud VPS, résilience hors-ligne et édition des audits comptables.</p>
-                                <span class="badge-device"><i class="fab fa-apple"></i> Hybrid iPhone & Mac • Captures défilantes</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-            <button class="carousel-btn carousel-btn-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
-            <div class="carousel-indicators"></div>
         </div>
 
         <!-- EXPERIENCES PROFESSIONNELLES -->
