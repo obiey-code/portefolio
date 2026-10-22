@@ -1,3 +1,6 @@
 extracted_img/
+temp_audio/
 temp_frames/
+server.log
 *.tmp
+*.log
