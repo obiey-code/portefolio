@@ -273,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: '<i class="fas fa-mobile-screen-button" style="color: #3b82f6;"></i> 1. AGP Pay — Inscription & Activation Passager',
                 desc: 'Parcours usager complet : création du profil, vérification OTP par SMS, enregistrement de l\'immatriculation du véhicule et génération du Pass QR Code sécurisé.',
                 video: 'videos/agp_pay_mobile_inscription_passager.mp4',
+                poster: 'images/agp_framed/frame_agp_pay_mobile_inscription_passager.mp4_0.png',
                 badge: '<i class="fab fa-apple"></i> iPhone 15 Pro • App Mobile Flutter',
                 pills: [
                     '<span class="agp-pill"><i class="fas fa-code"></i> Flutter / Dart</span>',
@@ -293,6 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: '<i class="fas fa-wallet" style="color: #3b82f6;"></i> 2. AGP Pay — Recharge Mobile Money & Péage',
                 desc: 'Recharge instantanée via Mobile Money (PayDunya / SankMoney), confirmation par Webhooks sécurisés et débit automatique lors du passage aux barrières de péage.',
                 video: 'videos/agp_pay_mobile_recharge_paiement.mp4',
+                poster: 'images/agp_framed/frame_agp_pay_mobile_recharge_paiement.mp4_0.png',
                 badge: '<i class="fab fa-apple"></i> iPhone 15 Pro • Mobile Money & Scan QR',
                 pills: [
                     '<span class="agp-pill"><i class="fas fa-wallet"></i> PayDunya API</span>',
@@ -314,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: '<i class="fas fa-desktop" style="color: #3b82f6;"></i> 3. AGP Admin — Dashboard & Monitoring Web',
                 desc: 'Supervision globale et en temps réel du réseau national de péage sur portail Angular : recettes cumulées, trafic horaire et cartographie des gares.',
                 video: 'videos/agp_admin_web_dashboard_monitoring.mp4',
+                poster: 'images/agp_framed/frame_agp_admin_web_dashboard_monitoring.mp4_0.png',
                 badge: '<i class="fab fa-apple"></i> macOS • Portal Web Angular 17',
                 pills: [
                     '<span class="agp-pill"><i class="fab fa-angular"></i> Web Angular</span>',
@@ -334,6 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: '<i class="fas fa-sliders" style="color: #3b82f6;"></i> 4. AGP Admin — Postes de Péage & Tarification',
                 desc: 'Configuration centralisée des gares de péage, voies d\'accès, grilles tarifaires par catégorie de véhicule (Poids lourds, Léger, Moto) et abonnements.',
                 video: 'videos/agp_admin_web_gestion_postes_tarifs.mp4',
+                poster: 'images/agp_framed/frame_agp_admin_web_gestion_postes_tarifs.mp4_0.png',
                 badge: '<i class="fab fa-apple"></i> macOS • Portal Web Angular 17',
                 pills: [
                     '<span class="agp-pill"><i class="fas fa-building-columns"></i> Postes & Voies</span>',
@@ -354,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: '<i class="fas fa-cloud-arrow-up" style="color: #3b82f6;"></i> 5. AGP System — DataSynchro Cloud & Reporting',
                 desc: 'Architecture résiliente multi-sites avec moteur DataSynchro : réplication bidirectionnelle Cloud/Local, tolérance aux pannes réseau et reporting financier.',
                 video: 'videos/agp_system_synchro_cloud_reporting.mp4',
+                poster: 'images/agp_framed/frame_agp_system_synchro_cloud_reporting.mp4_0.png',
                 badge: '<i class="fab fa-apple"></i> Hybrid Cloud VPS & Local Nodes',
                 pills: [
                     '<span class="agp-pill"><i class="fas fa-arrows-rotate"></i> Moteur DataSynchro</span>',
@@ -381,9 +386,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.toggle('active', btn.getAttribute('data-module') === modKey);
             });
 
-            // Update video
+            // Update video & poster frame
             if (videoSrc && mainVideo) {
                 mainVideo.pause();
+                if (modData.poster) {
+                    mainVideo.poster = modData.poster;
+                }
                 videoSrc.src = modData.video;
                 mainVideo.load();
                 mainVideo.play().catch(() => {});
